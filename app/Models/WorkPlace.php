@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-use App\Traits\Model\HasDateSpanAttribute;
+use App\Contracts\Models\HasActiveOrderedScope;
+use App\Traits\Model\ActiveOrderedScope;
+use App\Traits\Model\DateSpanAttribute;
 use Carbon\Carbon;
 use Database\Factories\WorkPlaceFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,11 +21,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $order
  * @property-read string $date_span
  */
-class WorkPlace extends Model
+class WorkPlace extends Model implements HasActiveOrderedScope
 {
     /** @use HasFactory<WorkPlaceFactory> */
     use HasFactory;
-    use HasDateSpanAttribute;
+    use DateSpanAttribute;
+    use ActiveOrderedScope;
 
     public $timestamps = false;
 

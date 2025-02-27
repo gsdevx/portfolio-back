@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @property Carbon $start_date
  * @property Carbon $end_date
  */
-trait HasDateSpanAttribute
+trait DateSpanAttribute
 {
     public function dateSpan(): Attribute
     {

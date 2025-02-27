@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\ContactController;
 use App\Http\Controllers\Api\V1\EducationController;
 use App\Http\Controllers\Api\V1\SocialController;
+use App\Http\Controllers\Api\V1\Static\AboutMeController;
 use App\Http\Controllers\Api\V1\ToolController;
 use App\Http\Controllers\Api\V1\WorkPlaceController;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,7 @@ Route::group([
 
     Route::apiResource('tools', ToolController::class)
         ->only(['index']);
+
+    Route::get('static/about-me', AboutMeController::class)
+        ->name('static.about-me');
 });

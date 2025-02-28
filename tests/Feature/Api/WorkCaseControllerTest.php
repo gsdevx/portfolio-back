@@ -37,3 +37,24 @@ test('Get active work cases', function () {
                 ]));
         });
 });
+
+test('Get active work case by ID', function () {
+    $case = WorkCase::factory()->active()->create();
+
+    getJson(route('api.v1.cases.show', $case))
+        ->assertOk()
+        ->assertJson([
+            'id' => $case->id,
+            'preview' => $case->preview,
+            'image' => $case->image,
+            'title' => $case->title,
+            'summary' => $case->summary,
+            'description' => $case->description,
+            'tags' => $case->tags,
+        ]);
+
+    $case->update(['is_active' => false]);
+
+    getJson(route('api.v1.cases.show', $case))
+        ->assertNotFound();
+});

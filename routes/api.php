@@ -32,7 +32,7 @@ Route::group([
         ->only(['index']);
 
     Route::apiResource('cases', WorkCaseController::class)
-        ->only(['index']);
+        ->only(['index', 'show']);
 
     Route::get('static/about-me', AboutMeController::class)
         ->name('static.about-me');

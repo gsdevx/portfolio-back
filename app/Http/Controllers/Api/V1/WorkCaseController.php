@@ -5,17 +5,15 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\V1;
 
 use App\Actions\Models\Common\GetActiveOrdered;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Resources\WorkCaseResource;
 use App\Models\WorkCase;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class WorkCaseController extends Controller
+class WorkCaseController extends ApiController
 {
     public function index(GetActiveOrdered $getActiveOrdered): ResourceCollection
     {
-        return WorkCaseResource::collection(
-            $getActiveOrdered(WorkCase::class)
-        );
+        return $this->resourceCollection(WorkCaseResource::class, $getActiveOrdered(WorkCase::class));
     }
 }

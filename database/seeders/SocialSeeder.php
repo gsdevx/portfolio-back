@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Social;
+use App\Domain\Footer\Models\Social;
 use Illuminate\Database\Seeder;
 
 class SocialSeeder extends Seeder

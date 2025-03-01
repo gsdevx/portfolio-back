@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\WorkPlace;
+use App\Domain\AboutMe\Models\WorkPlace;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use function Pest\Laravel\getJson;

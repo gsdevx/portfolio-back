@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\WorkPlace;
-use App\Traits\Database\Factories\ActiveSetter;
-use App\Traits\Database\Factories\InactiveSetter;
+use App\Domain\AboutMe\Models\WorkPlace;
+use Database\Factories\Traits\ActiveSetter;
+use Database\Factories\Traits\InactiveSetter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,6 +16,8 @@ class WorkPlaceFactory extends Factory
 {
     use ActiveSetter;
     use InactiveSetter;
+
+    protected $model = WorkPlace::class;
 
     public function definition(): array
     {

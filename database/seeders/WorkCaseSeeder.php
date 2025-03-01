@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\WorkCase;
+use App\Domain\WorkCase\Models\WorkCase;
 use Illuminate\Database\Seeder;
 
 class WorkCaseSeeder extends Seeder

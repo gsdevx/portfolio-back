@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Tool;
-use App\Traits\Database\Factories\ActiveSetter;
-use App\Traits\Database\Factories\InactiveSetter;
+use App\Domain\AboutMe\Models\Tool;
+use Database\Factories\Traits\ActiveSetter;
+use Database\Factories\Traits\InactiveSetter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,6 +16,8 @@ class ToolFactory extends Factory
 {
     use ActiveSetter;
     use InactiveSetter;
+
+    protected $model = Tool::class;
 
     public function definition(): array
     {

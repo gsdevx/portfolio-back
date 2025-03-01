@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\Contact;
+use App\Domain\Footer\Models\Contact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use function Pest\Laravel\getJson;

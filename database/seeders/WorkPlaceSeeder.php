@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\WorkPlace;
+use App\Domain\AboutMe\Models\WorkPlace;
 use Illuminate\Database\Seeder;
 
 class WorkPlaceSeeder extends Seeder

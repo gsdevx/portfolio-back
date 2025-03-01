@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\Api\V1\ContactController;
-use App\Http\Controllers\Api\V1\EducationController;
-use App\Http\Controllers\Api\V1\SocialController;
-use App\Http\Controllers\Api\V1\Static\AboutMeController;
-use App\Http\Controllers\Api\V1\Static\GeneralSettingsController;
-use App\Http\Controllers\Api\V1\ToolController;
-use App\Http\Controllers\Api\V1\WorkCaseController;
-use App\Http\Controllers\Api\V1\WorkPlaceController;
+use App\Infrastructure\Http\Controllers\ContactController;
+use App\Infrastructure\Http\Controllers\EducationController;
+use App\Infrastructure\Http\Controllers\SocialController;
+use App\Infrastructure\Http\Controllers\Static\AboutMeController;
+use App\Infrastructure\Http\Controllers\Static\GeneralSettingsController;
+use App\Infrastructure\Http\Controllers\ToolController;
+use App\Infrastructure\Http\Controllers\WorkCaseController;
+use App\Infrastructure\Http\Controllers\WorkPlaceController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([

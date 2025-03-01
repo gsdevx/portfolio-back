@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\WorkCase;
-use App\Traits\Database\Factories\ActiveSetter;
-use App\Traits\Database\Factories\InactiveSetter;
+use App\Domain\WorkCase\Models\WorkCase;
+use Database\Factories\Traits\ActiveSetter;
+use Database\Factories\Traits\InactiveSetter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,6 +16,8 @@ class WorkCaseFactory extends Factory
 {
     use ActiveSetter;
     use InactiveSetter;
+
+    protected $model = WorkCase::class;
 
     public function definition(): array
     {

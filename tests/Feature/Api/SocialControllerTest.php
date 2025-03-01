@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\Social;
+use App\Domain\Footer\Models\Social;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use function Pest\Laravel\getJson;

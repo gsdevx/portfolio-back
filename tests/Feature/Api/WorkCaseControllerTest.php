@@ -27,7 +27,7 @@ test('Get active work cases', function () {
         ->assertJson(function (AssertableJson $json) use ($activeCount): void {
             $json->count($activeCount)
                 ->each(fn(AssertableJson $json) => $json->whereAllType([
-                    'id' => 'integer',
+                    'slug' => 'string',
                     'preview' => 'string|null',
                     'image' => 'string|null',
                     'title' => 'string',
@@ -44,7 +44,7 @@ test('Get active work case by ID', function () {
     getJson(route('api.v1.cases.show', $case))
         ->assertOk()
         ->assertJson([
-            'id' => $case->id,
+            'slug' => $case->slug,
             'preview' => $case->preview,
             'image' => $case->image,
             'title' => $case->title,

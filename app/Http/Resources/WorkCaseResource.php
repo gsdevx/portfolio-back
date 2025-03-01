@@ -12,7 +12,7 @@ class WorkCaseResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+            'slug' => $this->slug,
             'preview' => $this->getFirstMediaUrl('previews'),
             'image' => $this->getFirstMediaUrl('images'),
             'title' => $this->title,

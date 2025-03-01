@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->boolean('is_active')->default(false);
             $table->string('title');
+            $table->string('slug');
             $table->text('summary')->nullable();
             $table->text('description')->nullable();
             $table->json('tags')->nullable();

@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Contracts\Models\HasActiveOrderedScope;
 use App\Traits\Model\ActiveOrderedScope;
+use App\Traits\Model\WithSlug;
 use Carbon\Carbon;
 use Database\Factories\WorkCaseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property int $id
  * @property bool $is_active
  * @property string $title
+ * @property string $slug
  * @property string|null $summary
  * @property string|null $description
  * @property array|null $tags
@@ -33,9 +35,11 @@ class WorkCase extends Model implements HasMedia, HasActiveOrderedScope
     use SoftDeletes;
     use InteractsWithMedia;
     use ActiveOrderedScope;
+    use WithSlug;
 
     protected $fillable = [
         'is_active',
+        'slug',
         'title',
         'summary',
         'description',

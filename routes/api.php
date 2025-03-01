@@ -32,6 +32,9 @@ Route::group([
         ->only(['index']);
 
     Route::apiResource('cases', WorkCaseController::class)
+        ->parameters([
+            'cases' => 'case:slug',
+        ])
         ->only(['index', 'show']);
 
     Route::get('static/about-me', AboutMeController::class)

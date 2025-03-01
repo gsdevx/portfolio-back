@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\WorkCaseResource\Pages;
 use App\Filament\Resources\WorkCaseResource\RelationManagers;
+use App\Helpers\WorkCaseHelper;
 use App\Models\WorkCase;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -58,6 +59,9 @@ class WorkCaseResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('preview')
+                    ->label('Првеью')
+                    ->collection('previews'),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Заголовок')
                     ->searchable(),
@@ -77,6 +81,12 @@ class WorkCaseResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('slug')
+                    ->label('Ссылка')
+                    ->formatStateUsing(fn(WorkCase $record): string => WorkCaseHelper::resolveFrontendUri($record))
+                    ->copyable()
+                    ->copyableState(fn(WorkCase $record): string => WorkCaseHelper::resolveFrontendUri($record))
+                    ->searchable(),
                 Tables\Columns\ToggleColumn::make('is_active')
                     ->label('Показывать'),
             ])

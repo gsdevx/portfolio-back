@@ -47,9 +47,23 @@ class WorkCaseResource extends Resource
                 Forms\Components\Textarea::make('summary')
                     ->label('Краткое описание')
                     ->rows(3),
-                Forms\Components\Textarea::make('description')
+//                Forms\Components\Textarea::make('description')
+//                    ->label('Полное описание')
+//                    ->rows(10),
+                Forms\Components\RichEditor::make('description')
                     ->label('Полное описание')
-                    ->rows(10),
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'strike',
+                        'underline',
+                        'link',
+                        'orderedList',
+                        'bulletList',
+                        'h3',
+                        'redo',
+                        'undo',
+                    ]),
                 Forms\Components\TagsInput::make('tags')
                     ->label('Теги'),
             ]);

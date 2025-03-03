@@ -15,6 +15,6 @@ trait DateSpanAttribute
 {
     public function dateSpan(): Attribute
     {
-        return Attribute::get(fn(): string => $this->start_date->format('d.m.Y') . ' - ' . $this->end_date->format('d.m.Y'));
+        return Attribute::get(fn (): string => $this->start_date->format('d.m.Y').' - '.$this->end_date->format('d.m.Y'));
     }
 }

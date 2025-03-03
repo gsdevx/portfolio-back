@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Domain\AboutMe\Models;
 
-use App\Domain\Shared\Contracts\ModelHasActiveOrderedScope;
-use App\Domain\Shared\Traits\ActiveOrderedScope;
-use App\Domain\Shared\Traits\DateSpanAttribute;
 use Carbon\Carbon;
-use Database\Factories\WorkPlaceFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Database\Factories\WorkPlaceFactory;
+use App\Domain\Shared\Traits\DateSpanAttribute;
+use App\Domain\Shared\Traits\ActiveOrderedScope;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Domain\Shared\Contracts\ModelHasActiveOrderedScope;
 
 /**
  * @property int $id
@@ -25,10 +25,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class WorkPlace extends Model implements ModelHasActiveOrderedScope
 {
+    use ActiveOrderedScope;
+
+    use DateSpanAttribute;
     /** @use HasFactory<WorkPlaceFactory> */
     use HasFactory;
-    use DateSpanAttribute;
-    use ActiveOrderedScope;
 
     public $timestamps = false;
 

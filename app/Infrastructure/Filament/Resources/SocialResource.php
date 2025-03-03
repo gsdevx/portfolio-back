@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Filament\Resources;
 
-use App\Domain\Footer\Models\Social;
-use App\Filament\Resources\SocialResource\Pages;
-use App\Filament\Resources\SocialResource\RelationManagers;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use App\Domain\Footer\Models\Social;
 
 class SocialResource extends Resource
 {

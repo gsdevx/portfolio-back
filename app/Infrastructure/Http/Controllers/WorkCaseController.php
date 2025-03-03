@@ -4,21 +4,18 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Http\Controllers;
 
-use App\Domain\WorkCase\Exceptions\WorkCaseNotFound;
 use App\Domain\WorkCase\Models\WorkCase;
-use App\Domain\WorkCase\Repositories\WorkCaseRepository;
-use App\Infrastructure\Http\Resources\WorkCaseResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Domain\WorkCase\Exceptions\WorkCaseNotFound;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Infrastructure\Http\Resources\WorkCaseResource;
+use App\Domain\WorkCase\Repositories\WorkCaseRepository;
 
 final class WorkCaseController extends ApiController
 {
     public function __construct(
         private readonly WorkCaseRepository $repository
-    )
-    {
-
-    }
+    ) {}
 
     public function index(): ResourceCollection
     {
@@ -27,8 +24,8 @@ final class WorkCaseController extends ApiController
 
     public function show(WorkCase $case): JsonResource
     {
-        if (!$case->is_active) {
-            throw new WorkCaseNotFound();
+        if (! $case->is_active) {
+            throw new WorkCaseNotFound;
         }
 
         return $this->resource(WorkCaseResource::class, $case);

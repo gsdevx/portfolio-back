@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Filament\Resources;
 
-use App\Domain\AboutMe\Models\Education;
-use App\Filament\Resources\EducationResource\Pages;
-use App\Filament\Resources\EducationResource\RelationManagers;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use App\Domain\AboutMe\Models\Education;
 
 class EducationResource extends Resource
 {

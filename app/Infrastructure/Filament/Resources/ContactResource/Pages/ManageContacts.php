@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Filament\Resources\ContactResource\Pages;
 
-use App\Infrastructure\Filament\Resources\ContactResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
+use App\Infrastructure\Filament\Resources\ContactResource;
 
 class ManageContacts extends ManageRecords
 {

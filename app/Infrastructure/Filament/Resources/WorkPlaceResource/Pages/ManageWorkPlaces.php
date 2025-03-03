@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Filament\Resources\WorkPlaceResource\Pages;
 
-use App\Infrastructure\Filament\Resources\WorkPlaceResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
+use App\Infrastructure\Filament\Resources\WorkPlaceResource;
 
 class ManageWorkPlaces extends ManageRecords
 {

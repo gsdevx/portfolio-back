@@ -6,7 +6,4 @@ namespace App\Domain\WorkCase\Exceptions;
 
 use App\Domain\Shared\Exceptions\ModelNotFoundException;
 
-class WorkCaseNotFound extends ModelNotFoundException
-{
-
-}
+class WorkCaseNotFound extends ModelNotFoundException {}

@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Filament\Pages;
 
-use App\Domain\Settings\GeneralSettings;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
+use App\Domain\Settings\GeneralSettings;
 
 class ManageGeneral extends SettingsPage
 {

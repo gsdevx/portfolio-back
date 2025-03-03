@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Domain\WorkCase\Models;
 
-use App\Domain\Shared\Contracts\ModelHasActiveOrderedScope;
-use App\Domain\Shared\Traits\ActiveOrderedScope;
-use App\Domain\Shared\Traits\WithSlug;
 use Carbon\Carbon;
-use Database\Factories\WorkCaseFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
+use App\Domain\Shared\Traits\WithSlug;
+use Database\Factories\WorkCaseFactory;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Domain\Shared\Traits\ActiveOrderedScope;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Domain\Shared\Contracts\ModelHasActiveOrderedScope;
 
 /**
  * @property int $id
@@ -30,11 +30,12 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  */
 class WorkCase extends Model implements HasMedia, ModelHasActiveOrderedScope
 {
+    use ActiveOrderedScope;
+
     /** @use HasFactory<WorkCaseFactory> */
     use HasFactory;
-    use SoftDeletes;
     use InteractsWithMedia;
-    use ActiveOrderedScope;
+    use SoftDeletes;
     use WithSlug;
 
     protected $fillable = [

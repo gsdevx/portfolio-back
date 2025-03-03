@@ -6,7 +6,4 @@ namespace App\Domain\Footer\Repositories;
 
 use App\Domain\Shared\Repositories\RepositoryWithActiveOrderedRecords;
 
-interface SocialRepositoryWithActiveOrderedRecords extends RepositoryWithActiveOrderedRecords
-{
-
-}
+interface SocialRepositoryWithActiveOrderedRecords extends RepositoryWithActiveOrderedRecords {}

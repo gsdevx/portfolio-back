@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use App\Domain\AboutMe\Models\Education;
 use Illuminate\Database\Seeder;
+use App\Domain\AboutMe\Models\Education;
 
 class EducationSeeder extends Seeder
 {

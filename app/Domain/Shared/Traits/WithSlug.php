@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Shared\Traits;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
 
 trait WithSlug
 {
@@ -26,7 +26,7 @@ trait WithSlug
         $slug = Str::slug($model->{static::$fromColumn});
 
         while ($model::query()->where(self::$slugColumn, $slug)->exists()) {
-            $slug .= '-' . ++$i;
+            $slug .= '-'.++$i;
         }
 
         return $slug;

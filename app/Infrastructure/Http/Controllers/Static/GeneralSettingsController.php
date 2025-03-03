@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Infrastructure\Http\Controllers\Static;
 
 use App\Domain\Settings\GeneralSettings;
+use Illuminate\Http\Resources\Json\JsonResource;
 use App\Infrastructure\Http\Controllers\ApiController;
 use App\Infrastructure\Http\Resources\GeneralSettingsResource;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 final class GeneralSettingsController extends ApiController
 {

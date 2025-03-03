@@ -6,7 +6,4 @@ namespace App\Domain\AboutMe\Repositories;
 
 use App\Domain\Shared\Repositories\RepositoryWithActiveOrderedRecords;
 
-interface EducationRepositoryWithActiveOrderedRecords extends RepositoryWithActiveOrderedRecords
-{
-
-}
+interface EducationRepositoryWithActiveOrderedRecords extends RepositoryWithActiveOrderedRecords {}

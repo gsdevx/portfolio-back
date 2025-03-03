@@ -1,16 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Filament\Resources;
 
-use App\Domain\WorkCase\Helpers\WorkCaseHelper;
-use App\Domain\WorkCase\Models\WorkCase;
-use App\Filament\Resources\WorkCaseResource\Pages;
-use App\Filament\Resources\WorkCaseResource\RelationManagers;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use App\Domain\WorkCase\Models\WorkCase;
+use App\Domain\WorkCase\Helpers\WorkCaseHelper;
 
 class WorkCaseResource extends Resource
 {
@@ -47,9 +47,9 @@ class WorkCaseResource extends Resource
                 Forms\Components\Textarea::make('summary')
                     ->label('Краткое описание')
                     ->rows(3),
-//                Forms\Components\Textarea::make('description')
-//                    ->label('Полное описание')
-//                    ->rows(10),
+                //                Forms\Components\Textarea::make('description')
+                //                    ->label('Полное описание')
+                //                    ->rows(10),
                 Forms\Components\RichEditor::make('description')
                     ->label('Полное описание')
                     ->toolbarButtons([
@@ -97,9 +97,9 @@ class WorkCaseResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('slug')
                     ->label('Ссылка')
-                    ->formatStateUsing(fn(WorkCase $record): string => WorkCaseHelper::resolveFrontendUri($record))
+                    ->formatStateUsing(fn (WorkCase $record): string => WorkCaseHelper::resolveFrontendUri($record))
                     ->copyable()
-                    ->copyableState(fn(WorkCase $record): string => WorkCaseHelper::resolveFrontendUri($record))
+                    ->copyableState(fn (WorkCase $record): string => WorkCaseHelper::resolveFrontendUri($record))
                     ->searchable(),
                 Tables\Columns\ToggleColumn::make('is_active')
                     ->label('Показывать'),

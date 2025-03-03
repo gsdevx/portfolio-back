@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Http\Middleware;
 
-use App\Domain\Shared\Exceptions\UnauthorizedException;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Domain\Shared\Exceptions\UnauthorizedException;
 
 class TrustedHosts
 {
@@ -15,8 +15,8 @@ class TrustedHosts
     {
         $allowedHosts = config('hosts.allowed');
 
-        if (!in_array($request->getHost(), $allowedHosts)) {
-            throw new UnauthorizedException();
+        if (! in_array($request->getHost(), $allowedHosts, true)) {
+            throw new UnauthorizedException;
         }
 
         return $next($request);

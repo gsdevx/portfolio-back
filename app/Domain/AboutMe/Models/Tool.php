@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\AboutMe\Models;
 
-use App\Domain\Shared\Contracts\ModelHasActiveOrderedScope;
-use App\Domain\Shared\Traits\ActiveOrderedScope;
 use Database\Factories\ToolFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Domain\Shared\Traits\ActiveOrderedScope;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Domain\Shared\Contracts\ModelHasActiveOrderedScope;
 
 /**
  * @property int $id
@@ -18,9 +18,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tool extends Model implements ModelHasActiveOrderedScope
 {
+    use ActiveOrderedScope;
+
     /** @use HasFactory<ToolFactory> */
     use HasFactory;
-    use ActiveOrderedScope;
 
     public $timestamps = false;
 

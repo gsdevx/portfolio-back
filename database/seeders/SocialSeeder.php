@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use App\Domain\Footer\Models\Social;
 use Illuminate\Database\Seeder;
+use App\Domain\Footer\Models\Social;
 
 class SocialSeeder extends Seeder
 {

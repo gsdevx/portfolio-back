@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use App\Infrastructure\Http\Controllers\ContactController;
-use App\Infrastructure\Http\Controllers\EducationController;
+use Illuminate\Support\Facades\Route;
+use App\Infrastructure\Http\Controllers\ToolController;
 use App\Infrastructure\Http\Controllers\SocialController;
+use App\Infrastructure\Http\Controllers\ContactController;
+use App\Infrastructure\Http\Controllers\WorkCaseController;
+use App\Infrastructure\Http\Controllers\EducationController;
+use App\Infrastructure\Http\Controllers\WorkPlaceController;
 use App\Infrastructure\Http\Controllers\Static\AboutMeController;
 use App\Infrastructure\Http\Controllers\Static\GeneralSettingsController;
-use App\Infrastructure\Http\Controllers\ToolController;
-use App\Infrastructure\Http\Controllers\WorkCaseController;
-use App\Infrastructure\Http\Controllers\WorkPlaceController;
-use Illuminate\Support\Facades\Route;
 
 Route::group([
     'middleware' => ['api'],

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Http\Controllers;
 
-use App\Domain\AboutMe\Repositories\EducationRepositoryWithActiveOrderedRecords;
-use App\Infrastructure\Http\Resources\EducationResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Infrastructure\Http\Resources\EducationResource;
+use App\Domain\AboutMe\Repositories\EducationRepositoryWithActiveOrderedRecords;
 
 final class EducationController extends ApiController
 {

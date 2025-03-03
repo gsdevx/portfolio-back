@@ -1,17 +1,19 @@
 <?php
 
-use App\Domain\Shared\Exceptions\ModelNotFoundException;
-use App\Domain\Shared\Exceptions\UnauthorizedException;
-use App\Infrastructure\Http\Middleware\TrustedHosts;
+declare(strict_types=1);
+
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use App\Infrastructure\Http\Middleware\TrustedHosts;
+use App\Domain\Shared\Exceptions\UnauthorizedException;
+use App\Domain\Shared\Exceptions\ModelNotFoundException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        api: __DIR__ . '/../routes/api.php',
+        api: __DIR__.'/../routes/api.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {

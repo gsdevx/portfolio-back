@@ -27,11 +27,11 @@ abstract class ApiController
 
     private function checkResourceClass(string $resourceClass): void
     {
-        if (!class_exists($resourceClass)) {
+        if (! class_exists($resourceClass)) {
             throw new \InvalidArgumentException(sprintf('Resource "%s" does not exist.', $resourceClass));
         }
 
-        if (!is_subclass_of($resourceClass, JsonResource::class)) {
+        if (! is_subclass_of($resourceClass, JsonResource::class)) {
             throw new \InvalidArgumentException(sprintf('Resource "%s" must implement JsonResource.', $resourceClass));
         }
     }

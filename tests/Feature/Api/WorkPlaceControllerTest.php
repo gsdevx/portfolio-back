@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Domain\AboutMe\Models\WorkPlace;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Testing\Fluent\AssertableJson;
 use function Pest\Laravel\getJson;
+
+use App\Domain\AboutMe\Models\WorkPlace;
+use Illuminate\Testing\Fluent\AssertableJson;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
@@ -26,7 +27,7 @@ test('Get active work places', function () {
         ->assertOk()
         ->assertJson(function (AssertableJson $json) use ($activeCount): void {
             $json->count($activeCount)
-                ->each(fn(AssertableJson $json) => $json->whereAllType([
+                ->each(fn (AssertableJson $json) => $json->whereAllType([
                     'companyName' => 'string',
                     'jobTitle' => 'string',
                     'description' => 'string',

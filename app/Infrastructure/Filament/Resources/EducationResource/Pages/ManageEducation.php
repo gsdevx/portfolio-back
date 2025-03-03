@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Filament\Resources\EducationResource\Pages;
 
-use App\Infrastructure\Filament\Resources\EducationResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
+use App\Infrastructure\Filament\Resources\EducationResource;
 
 class ManageEducation extends ManageRecords
 {

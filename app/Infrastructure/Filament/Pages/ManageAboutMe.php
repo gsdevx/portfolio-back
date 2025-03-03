@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Filament\Pages;
 
-use App\Domain\AboutMe\Settings\AboutMeSettings;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
+use App\Domain\AboutMe\Settings\AboutMeSettings;
 
 class ManageAboutMe extends SettingsPage
 {

@@ -10,10 +10,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Domain\WorkCase\Repositories\WorkCaseRepository;
 use App\Infrastructure\Persistence\ToolEloquentRepository;
+use App\Domain\Statistics\Repositories\PageVisitRepository;
 use App\Infrastructure\Persistence\SocialEloquentRepository;
 use App\Infrastructure\Persistence\ContactEloquentRepository;
 use App\Infrastructure\Persistence\WorkCaseEloquentRepository;
 use App\Infrastructure\Persistence\EducationEloquentRepository;
+use App\Infrastructure\Persistence\PageVisitEloquentRepository;
 use App\Infrastructure\Persistence\WorkPlaceEloquentRepository;
 use App\Domain\AboutMe\Repositories\ToolRepositoryWithActiveOrderedRecords;
 use App\Domain\Footer\Repositories\SocialRepositoryWithActiveOrderedRecords;
@@ -30,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         ContactRepositoryWithActiveOrderedRecords::class => ContactEloquentRepository::class,
         SocialRepositoryWithActiveOrderedRecords::class => SocialEloquentRepository::class,
         WorkCaseRepository::class => WorkCaseEloquentRepository::class,
+        PageVisitRepository::class => PageVisitEloquentRepository::class,
     ];
 
     public function register(): void

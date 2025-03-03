@@ -8,6 +8,7 @@ use App\Infrastructure\Http\Controllers\SocialController;
 use App\Infrastructure\Http\Controllers\ContactController;
 use App\Infrastructure\Http\Controllers\WorkCaseController;
 use App\Infrastructure\Http\Controllers\EducationController;
+use App\Infrastructure\Http\Controllers\PageVisitController;
 use App\Infrastructure\Http\Controllers\WorkPlaceController;
 use App\Infrastructure\Http\Controllers\Static\AboutMeController;
 use App\Infrastructure\Http\Controllers\Static\GeneralSettingsController;
@@ -48,4 +49,7 @@ Route::group([
         Route::get('general-settings', GeneralSettingsController::class)
             ->name('general-settings');
     });
+
+    Route::post('page-visit', PageVisitController::class)
+        ->name('page-visit');
 });

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Filament\Resources;
 
-use App\Domain\AboutMe\Models\WorkPlace;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use App\Domain\AboutMe\Models\WorkPlace;
 
 class WorkPlaceResource extends Resource
 {

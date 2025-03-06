@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Domain\User\Models;
 
 use Carbon\Carbon;
-use Database\Factories\UserFactory;
-use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Database\Factories\UserFactory;
+use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 /**
  * @property int $id

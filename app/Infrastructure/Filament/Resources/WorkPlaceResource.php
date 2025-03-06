@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
 use App\Domain\AboutMe\Models\WorkPlace;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class WorkPlaceResource extends Resource
 {
@@ -42,7 +42,6 @@ class WorkPlaceResource extends Resource
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description')
                     ->label('Описание')
-                    ->maxLength(255)
                     ->default(null),
                 Forms\Components\DatePicker::make('start_date')
                     ->label('Дата начала')

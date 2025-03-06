@@ -7,7 +7,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Infrastructure\Http\Middleware\TrustedHosts;
 use App\Domain\Shared\Exceptions\UnauthorizedException;
 use App\Domain\Shared\Exceptions\ModelNotFoundException;
 
@@ -17,9 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->api([
-            TrustedHosts::class,
-        ]);
+        //
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (ModelNotFoundException $e, Request $request): JsonResponse|Exception {

@@ -26,8 +26,8 @@ use App\Domain\Shared\Contracts\ModelHasActiveOrderedScope;
 class Education extends Model implements ModelHasActiveOrderedScope
 {
     use ActiveOrderedScope;
-
     use DateSpanAttribute;
+
     /** @use HasFactory<EducationFactory> */
     use HasFactory;
 

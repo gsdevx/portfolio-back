@@ -25,6 +25,7 @@ class Social extends Model implements HasMedia, ModelHasActiveOrderedScope
 
     /** @use HasFactory<SocialFactory> */
     use HasFactory;
+
     use InteractsWithMedia;
 
     public $timestamps = false;

@@ -34,6 +34,7 @@ class WorkCase extends Model implements HasMedia, ModelHasActiveOrderedScope
 
     /** @use HasFactory<WorkCaseFactory> */
     use HasFactory;
+
     use InteractsWithMedia;
     use SoftDeletes;
     use WithSlug;

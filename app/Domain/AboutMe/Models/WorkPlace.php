@@ -26,8 +26,8 @@ use App\Domain\Shared\Contracts\ModelHasActiveOrderedScope;
 class WorkPlace extends Model implements ModelHasActiveOrderedScope
 {
     use ActiveOrderedScope;
-
     use DateSpanAttribute;
+
     /** @use HasFactory<WorkPlaceFactory> */
     use HasFactory;
 

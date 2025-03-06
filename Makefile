@@ -25,6 +25,7 @@ master:
 	git checkout origin/master --force
 
 release:
+	@make composer-install
 	@make clear-cache
 	@make migrate
 	@make optimize

@@ -1,11 +1,15 @@
-ARTISAN = php artisan
+ifneq ("$(wildcard .env)","")
+  include .env
+  export
+endif
 
-checkout-master:
-	git checkout origin/master --force
+PHP ?= $(PHP_PATH)
+PHP := $(PHP := php)
+COMPOSER ?= $(COMPOSER_PATH)
+ARTISAN = $(PHP) ./artisan
+
 composer-install:
-	composer install
-link-storage:
-	@$(ARTISAN) storage:link
+	@$(COMPOSER) install
 clear-cache:
 	@$(ARTISAN) optimize:clear
 	@$(ARTISAN) filament:optimize-clear
@@ -16,12 +20,11 @@ optimize:
 	@$(ARTISAN) filament:optimize
 	@$(ARTISAN) config:cache
 	@$(ARTISAN) route:cache
-	@$(ARTISAN) view:cache
 
-prod-release:
-	@make checkout-master
-	@make composer-install
+master:
+	git checkout origin/master --force
+
+release:
 	@make clear-cache
 	@make migrate
 	@make optimize
-	@make link-storage

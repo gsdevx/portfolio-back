@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
 use App\Domain\AboutMe\Models\WorkPlace;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class WorkPlaceResource extends Resource
 {
@@ -47,11 +47,11 @@ class WorkPlaceResource extends Resource
                 Forms\Components\DatePicker::make('start_date')
                     ->label('Дата начала')
                     ->required()
-                    ->native(0),
+                    ->native(false),
                 Forms\Components\DatePicker::make('end_date')
                     ->label('Дата окончания')
                     ->required()
-                    ->native(0),
+                    ->native(false),
             ]);
     }
 

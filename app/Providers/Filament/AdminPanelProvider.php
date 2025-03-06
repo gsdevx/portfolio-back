@@ -8,6 +8,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -57,6 +58,11 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->plugin(FilamentMediaManagerPlugin::make());
+            ->plugin(FilamentMediaManagerPlugin::make())
+            ->navigationItems([
+                NavigationItem::make('Перейти на сайт')
+                    ->url(config('app.frontend_url'), shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-link')
+            ]);
     }
 }

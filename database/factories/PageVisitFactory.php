@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Domain\Statistics\Models\PageVisit;
+use App\Models\PageVisit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

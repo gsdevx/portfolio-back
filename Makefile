@@ -1,15 +1,5 @@
-ifneq ("$(wildcard .env)","")
-  include .env
-  export
-endif
+ARTISAN = php artisan
 
-PHP ?= $(PHP_PATH)
-PHP := $(PHP := php)
-COMPOSER ?= $(COMPOSER_PATH)
-ARTISAN = $(PHP) ./artisan
-
-composer-install:
-	@$(COMPOSER) install
 clear-cache:
 	@$(ARTISAN) optimize:clear
 	@$(ARTISAN) filament:optimize-clear
@@ -22,10 +12,5 @@ optimize:
 	@$(ARTISAN) route:cache
 
 master:
-	git checkout origin/master --force
-
-release:
-	@make composer-install
-	@make clear-cache
-	@make migrate
-	@make optimize
+	git fetch --all
+	git pull master --force

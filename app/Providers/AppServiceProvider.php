@@ -4,37 +4,14 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Support\Str;
+use App\Contracts\Model\Mappable;
+use Exception;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Domain\WorkCase\Repositories\WorkCaseRepository;
-use App\Infrastructure\Persistence\ToolEloquentRepository;
-use App\Domain\Statistics\Repositories\PageVisitRepository;
-use App\Infrastructure\Persistence\SocialEloquentRepository;
-use App\Infrastructure\Persistence\ContactEloquentRepository;
-use App\Infrastructure\Persistence\WorkCaseEloquentRepository;
-use App\Infrastructure\Persistence\EducationEloquentRepository;
-use App\Infrastructure\Persistence\PageVisitEloquentRepository;
-use App\Infrastructure\Persistence\WorkPlaceEloquentRepository;
-use App\Domain\AboutMe\Repositories\ToolRepositoryWithActiveOrderedRecords;
-use App\Domain\Footer\Repositories\SocialRepositoryWithActiveOrderedRecords;
-use App\Domain\Footer\Repositories\ContactRepositoryWithActiveOrderedRecords;
-use App\Domain\AboutMe\Repositories\EducationRepositoryWithActiveOrderedRecords;
-use App\Domain\AboutMe\Repositories\WorkPlaceRepositoryWithActiveOrderedRecords;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public array $bindings = [
-        EducationRepositoryWithActiveOrderedRecords::class => EducationEloquentRepository::class,
-        ToolRepositoryWithActiveOrderedRecords::class => ToolEloquentRepository::class,
-        WorkPlaceRepositoryWithActiveOrderedRecords::class => WorkPlaceEloquentRepository::class,
-        ContactRepositoryWithActiveOrderedRecords::class => ContactEloquentRepository::class,
-        SocialRepositoryWithActiveOrderedRecords::class => SocialEloquentRepository::class,
-        WorkCaseRepository::class => WorkCaseEloquentRepository::class,
-        PageVisitRepository::class => PageVisitEloquentRepository::class,
-    ];
-
     public function register(): void
     {
         //
@@ -42,12 +19,16 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        JsonResource::withoutWrapping();
+        Builder::macro('getMappedWithMethod', function (string $method, mixed ...$args) {
+            $models = $this->get();
 
-        Factory::guessFactoryNamesUsing(function (string $modelName): string {
-            $modelName = Str::afterLast($modelName, '\\');
+            return $models->map(function (Model $model) use ($method, $args) {
+                if (! $model instanceof Mappable) {
+                    throw new Exception(sprintf('Model should implement %s interface', Mappable::class));
+                }
 
-            return 'Database\Factories\\'.$modelName.'Factory';
+                return $model->mapper()->$method(...$args);
+            });
         });
     }
 }

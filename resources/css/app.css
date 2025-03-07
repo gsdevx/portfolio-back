@@ -1,0 +1,39 @@
+@import "bootstrap";
+
+.link-active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -17px;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+}
+
+.about-me-container .avatar-container {
+    width: 100%;
+    height: 100%;
+}
+
+.about-me-container .avatar-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-me-container .description {
+    white-space: pre-wrap;
+}
+
+.card-img-top {
+    height: 350px;
+    object-fit: cover;
+}
+
+/*.work-case-description {*/
+/*    white-space: pre-wrap;*/
+/*}*/
+
+.work-case-description h3 {
+    font-size: 1.5rem !important;
+}

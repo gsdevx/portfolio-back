@@ -15,9 +15,11 @@ class WorkCaseController extends Controller
 {
     public function index(): View
     {
-        $workCases = Cache::rememberForever('work_cases', static function (): EloquentCollection|SupportCollection {
-            return WorkCase::activeOrdered()->getMappedWithMethod('toDTO');
-        });
+        $getMappedCases = static fn(): EloquentCollection|SupportCollection => WorkCase::activeOrdered()->getMappedWithMethod('toDTO');
+
+        $workCases = auth()->user()
+            ? $getMappedCases()
+            : Cache::rememberForever('work_cases', $getMappedCases);
 
         return view('pages/work-cases/index', compact('workCases'));
     }

@@ -15,9 +15,7 @@ class WorkCaseController extends Controller
 {
     public function index(): View
     {
-        $rememberForMinutes = 5;
-
-        $workCases = Cache::remember('work_cases', 60 * $rememberForMinutes, static function (): EloquentCollection|SupportCollection {
+        $workCases = Cache::rememberForever('work_cases', static function (): EloquentCollection|SupportCollection {
             return WorkCase::activeOrdered()->getMappedWithMethod('toDTO');
         });
 

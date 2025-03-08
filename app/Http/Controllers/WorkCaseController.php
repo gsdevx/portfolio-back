@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\WorkCase;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
@@ -16,7 +17,7 @@ class WorkCaseController extends Controller
     {
         $rememberForMinutes = 5;
 
-        $workCases = Cache::remember('work_cases', 60 * $rememberForMinutes, static function (): Collection {
+        $workCases = Cache::remember('work_cases', 60 * $rememberForMinutes, static function (): EloquentCollection|SupportCollection {
             return WorkCase::activeOrdered()->getMappedWithMethod('toDTO');
         });
 

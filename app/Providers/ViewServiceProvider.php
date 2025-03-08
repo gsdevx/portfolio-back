@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Mappers\GeneralSettingsMapper;
 use App\Mappers\Partial\FooterMapper;
 use App\Models\Contact;
 use App\Models\Social;
@@ -25,5 +26,7 @@ class ViewServiceProvider extends ServiceProvider
                 contactDTOs: Contact::activeOrdered()->getMappedWithMethod('toDTO'),
             ))->toDTO());
         });
+
+        View::share('generalSettings', GeneralSettingsMapper::makeFromAppContainer()->toDTO());
     }
 }

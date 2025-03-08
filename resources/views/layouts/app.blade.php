@@ -10,16 +10,28 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-<div class="d-flex flex-column min-vh-100">
-    @include('partials/header')
 
-    <div class="flex-grow-1 mb-5">
-        <div class="container">
-            @yield('content')
-        </div>
+@if(request()->user())
+    @include('partials.panel')
+@endif
+
+@if(!$generalSettings->siteEnabled)
+    <div class="mt-5 d-flex justify-content-center">
+        <h1>Сайт временно не доступен</h1>
     </div>
+@else
+    <div class="d-flex flex-column min-vh-100">
+        @include('partials/header')
 
-    @include('partials/footer')
-</div>
+        <div class="flex-grow-1 mb-5">
+            <div class="container">
+                @yield('content')
+            </div>
+        </div>
+
+        @include('partials/footer')
+    </div>
+@endif
+
 </body>
 </html>

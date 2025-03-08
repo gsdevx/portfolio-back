@@ -33,7 +33,7 @@
                                 <div class="card-body p-0">
                                     <h5 class="card-title">{{ $item->profession }}</h5>
                                     <h6 class="card-subtitle mb-2 text-secondary">
-                                        {{ $item->institutionName }} • {{ $item->startDate }} — {{ $item->endDate }}</h6>
+                                        {{ $item->institutionName }} • {{ $item->startDate->format('d.m.Y') }} — {{ $item->endDate->format('d.m.Y') }}</h6>
                                     <p class="card-text">{{ $item->description }}</p>
                                 </div>
                             </div>
@@ -49,8 +49,8 @@
                                 <div class="card rounded-0 border-start border-4 border-end-0 border-top-0 border-bottom-0">
                                     <div class="card-body py-0">
                                         <h5 class="card-title">{{ $item->jobTitle }}</h5>
-                                        <h6 class="card-subtitle mb-2 text-secondary">{{ $item->companyName }} • {{ $item->startDate }} —
-                                            {{ $item->endDate }}</h6>
+                                        <h6 class="card-subtitle mb-2 text-secondary">{{ $item->companyName }} • {{ $item->startDate->format('d.m.Y') }} —
+                                            {{ $item->endDate->format('d.m.Y') }}</h6>
                                         <p class="card-text">{{ $item->description }}</p>
                                     </div>
                                 </div>

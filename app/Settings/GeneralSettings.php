@@ -8,7 +8,7 @@ use Spatie\LaravelSettings\Settings;
 
 class GeneralSettings extends Settings
 {
-    public ?string $site_enabled;
+    public ?bool $site_enabled;
 
     public static function group(): string
     {

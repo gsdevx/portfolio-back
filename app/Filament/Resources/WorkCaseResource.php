@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources;
 
 use App\Models\WorkCase;
+use App\Tables as AppTables;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -96,10 +97,13 @@ class WorkCaseResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('slug')
                     ->label('Ссылка')
-                    ->formatStateUsing(fn (WorkCase $record): string => route('work-cases.show', ['slug' => $record->slug]))
+                    ->formatStateUsing(fn (WorkCase $record): string => 'Копировать')
                     ->copyable()
                     ->copyableState(fn (WorkCase $record): string => route('work-cases.show', ['slug' => $record->slug]))
                     ->searchable(),
+                AppTables\Columns\SimpleTableColumn::make('views_data_set')
+                    ->label('Просмотры')
+                    ->toggleable(isToggledHiddenByDefault: false),
                 Tables\Columns\ToggleColumn::make('is_active')
                     ->label('Показывать'),
             ])
@@ -131,6 +135,13 @@ class WorkCaseResource extends Resource
             'index' => \App\Filament\Resources\WorkCaseResource\Pages\ListWorkCases::route('/'),
             'create' => \App\Filament\Resources\WorkCaseResource\Pages\CreateWorkCase::route('/create'),
             'edit' => \App\Filament\Resources\WorkCaseResource\Pages\EditWorkCase::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            WorkCaseResource\Widgets\WorkCasesPageVisitInfo::class,
         ];
     }
 }

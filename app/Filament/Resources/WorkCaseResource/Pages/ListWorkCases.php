@@ -18,4 +18,11 @@ class ListWorkCases extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            WorkCaseResource\Widgets\WorkCasesPageVisitInfo::class,
+        ];
+    }
 }

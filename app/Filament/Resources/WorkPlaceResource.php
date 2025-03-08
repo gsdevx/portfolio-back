@@ -15,7 +15,7 @@ class WorkPlaceResource extends Resource
 {
     protected static ?string $model = WorkPlace::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     protected static ?string $navigationGroup = 'О себе';
 

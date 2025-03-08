@@ -62,7 +62,7 @@ class AdminPanelProvider extends PanelProvider
             ->navigationItems([
                 NavigationItem::make('Перейти на сайт')
                     ->url(url('/'), shouldOpenInNewTab: true)
-                    ->icon('heroicon-o-link'),
+                    ->icon('heroicon-o-computer-desktop'),
             ]);
     }
 }

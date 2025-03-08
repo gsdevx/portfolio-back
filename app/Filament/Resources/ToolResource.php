@@ -15,7 +15,7 @@ class ToolResource extends Resource
 {
     protected static ?string $model = Tool::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-wrench-screwdriver';
 
     protected static ?string $navigationGroup = 'О себе';
 

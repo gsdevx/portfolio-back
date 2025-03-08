@@ -16,7 +16,7 @@ class WorkCaseResource extends Resource
 {
     protected static ?string $model = WorkCase::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-cube';
 
     protected static ?string $navigationGroup = 'Контент';
 

@@ -21,7 +21,7 @@ class WorkCaseController extends Controller
             ? $getMappedCases()
             : Cache::rememberForever('work_cases', $getMappedCases);
 
-        return view('pages/work-cases/index', compact('workCases'));
+        return view('pages.work-cases.index', compact('workCases'));
     }
 
     public function show(string $slug): View
@@ -30,7 +30,7 @@ class WorkCaseController extends Controller
             ->where(['is_active' => true, 'slug' => $slug])
             ->firstOrFail();
 
-        return view('pages/work-cases/show', [
+        return view('pages.work-cases.show', [
             'workCase' => $workCase->mapper()->toDTO(),
         ]);
     }

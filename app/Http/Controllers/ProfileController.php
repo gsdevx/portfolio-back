@@ -21,6 +21,6 @@ class ProfileController extends Controller
             toolDTOs: Tool::activeOrdered()->getMappedWithMethod('toDTO')
         );
 
-        return view('pages/profile', $mapper->toDTO());
+        return view('pages.profile', $mapper->toDTO());
     }
 }

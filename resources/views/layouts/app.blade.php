@@ -11,9 +11,9 @@
 </head>
 <body>
 
-@if(request()->user())
+@auth
     @include('partials.panel')
-@endif
+@endauth
 
 @if(!$generalSettings->siteEnabled)
     <div class="mt-5 d-flex justify-content-center">

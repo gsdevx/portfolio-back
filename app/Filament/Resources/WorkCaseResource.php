@@ -22,7 +22,9 @@ class WorkCaseResource extends Resource
 
     protected static ?string $label = 'Кейс';
 
-    protected static ?string $pluralLabel = 'Кейсы ';
+    protected static ?string $pluralLabel = 'Кейсы';
+
+    protected static ?string $recordRouteKeyName = 'slug';
 
     public static function form(Form $form): Form
     {
@@ -35,10 +37,12 @@ class WorkCaseResource extends Resource
                 Forms\Components\SpatieMediaLibraryFileUpload::make('preview')
                     ->label('Превью')
                     ->collection('previews')
+                    ->maxSize(10240)
                     ->required(),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('image')
                     ->label('Основное изображение')
                     ->collection('images')
+                    ->maxSize(10240)
                     ->required(),
                 Forms\Components\TextInput::make('title')
                     ->label('Название')
@@ -47,9 +51,6 @@ class WorkCaseResource extends Resource
                 Forms\Components\Textarea::make('summary')
                     ->label('Краткое описание')
                     ->rows(3),
-                //                Forms\Components\Textarea::make('description')
-                //                    ->label('Полное описание')
-                //                    ->rows(10),
                 Forms\Components\RichEditor::make('description')
                     ->label('Полное описание')
                     ->toolbarButtons([
@@ -107,11 +108,9 @@ class WorkCaseResource extends Resource
                 Tables\Columns\ToggleColumn::make('is_active')
                     ->label('Показывать'),
             ])
-            ->filters([
-                //
-            ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->url(static fn ($record): string => route('filament.admin.resources.work-cases.edit', ['record' => $record->slug])),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -120,13 +119,6 @@ class WorkCaseResource extends Resource
             ])
             ->defaultSort('order')
             ->reorderable('order');
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

@@ -22,6 +22,8 @@ readonly class WorkCaseMapper implements ModelMapper
             summary: $this->workCase->summary,
             description: $this->workCase->description,
             tags: $this->workCase->tags,
+            viewsCount: $this->workCase->getViewsCount(),
+            todayViewsCount: $this->workCase->getTodayViewsCount(),
         );
     }
 }

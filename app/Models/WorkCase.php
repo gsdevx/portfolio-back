@@ -71,18 +71,28 @@ class WorkCase extends Model implements HasMedia, Mappable, ShouldHaveActiveOrde
         return new WorkCaseMapper($this);
     }
 
+    public function getTodayViewsCount(bool $unique = false): int
+    {
+        $today = today();
+        $startOfDay = $today->clone()->startOfDay();
+        $endOfDay = $today->clone()->endOfDay();
+
+        return VisitAnalytics::getViewsCount(concrete: $this, unique: $unique, fromDate: $startOfDay, toDate: $endOfDay);
+    }
+
+    public function getViewsCount(bool $unique = false): int
+    {
+        return VisitAnalytics::getViewsCount(concrete: $this, unique: $unique);
+    }
+
     public function viewsDataSet(): Attribute
     {
         return Attribute::get(function (): array {
-            $today = today();
-            $startOfDay = $today->clone()->startOfDay();
-            $endOfDay = $today->clone()->endOfDay();
-
             return [
-                ['Сегодня', VisitAnalytics::getViewsCount(concrete: $this, fromDate: $startOfDay, toDate: $endOfDay)],
-                ['Сегодня (У)', VisitAnalytics::getViewsCount(concrete: $this, unique: true, fromDate: $startOfDay, toDate: $endOfDay)],
-                ['Все время', VisitAnalytics::getViewsCount(concrete: $this)],
-                ['Все время (У)', VisitAnalytics::getViewsCount(concrete: $this, unique: true)],
+                ['Сегодня', $this->getTodayViewsCount()],
+                ['Сегодня (У)', $this->getTodayViewsCount(true)],
+                ['Все время', $this->getViewsCount()],
+                ['Все время (У)', $this->getViewsCount(true)],
             ];
         });
     }

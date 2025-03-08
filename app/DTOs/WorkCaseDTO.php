@@ -14,5 +14,7 @@ readonly class WorkCaseDTO
         public ?string $summary,
         public ?string $description,
         public ?array $tags,
+        public ?int $viewsCount,
+        public ?int $todayViewsCount,
     ) {}
 }

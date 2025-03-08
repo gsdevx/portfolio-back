@@ -20,7 +20,9 @@
             <div class="col-xl-12 col-xxl-7 d-flex flex-column gap-4">
                 @if($text)
                     <div class="d-flex w-100 flex-column gap-2">
-                        <span class="h3 mt-4 mt-xxl-0">Обо мне</span>
+                        <span class="h3 mt-4 mt-xxl-0">
+                            Обо мне
+                        </span>
                         <span class="description">{{ $text }}</span>
                     </div>
                 @endif

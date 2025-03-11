@@ -4,180 +4,90 @@ declare(strict_types=1);
 
 namespace App\Analytics\PageVisits;
 
-use App\Models\PageVisit;
+use App\Repositories\PageVisitRepository;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 
-class PageVisitsAnalytics
+readonly class PageVisitsAnalytics
 {
-    public static function getUniqueGuestsToday(): int
-    {
-        $today = today();
+    private PageVisitRepository $repository;
 
-        return self::getVisitsCount(
-            fromDate: $today->copy()->startOfDay(),
-            toDate: $today->copy()->endOfDay()
-        );
+    private Carbon $currentDate;
+
+    public function __construct()
+    {
+        $this->repository = new PageVisitRepository;
+        $this->currentDate = now();
     }
 
-    public static function getUniqueGuestsThisWeek(): int
+    public function getUniqueGuestsToday(): int
     {
-        $today = today();
-
-        return self::getVisitsCount(
-            fromDate: $today->copy()->startOfWeek(),
-            toDate: $today->copy()->endOfWeek()
-        );
+        return $this->repository->getUniqueIPAddressesTodayCount();
     }
 
-    public static function getUniqueGuestsThisMonth(): int
+    public function getUniqueGuestsThisWeek(): int
     {
-        $today = today();
-
-        return self::getVisitsCount(
-            fromDate: $today->copy()->startOfMonth(),
-            toDate: $today->copy()->endOfMonth()
-        );
+        return $this->repository->getUniqueIPAddressesThisWeekCount();
     }
 
-    public static function getProfilePageViewsToday(): int
+    public function getUniqueGuestsThisMonth(): int
     {
-        $today = today();
-
-        return ProfilePageVisits::getViewsCount(
-            fromDate: $today->copy()->startOfDay(),
-            toDate: $today->copy()->endOfDay(),
-        );
+        return $this->repository->getUniqueIPAddressesThisMonthCount();
     }
 
-    public static function getProfilePageViewsThisWeek(): int
+    public function getHourlyUniqueGuestsTodayChart(): array
     {
-        $today = today();
-
-        return ProfilePageVisits::getViewsCount(
-            fromDate: $today->copy()->startOfWeek(),
-            toDate: $today->copy()->endOfWeek(),
-        );
-    }
-
-    public static function getProfilePageViewsThisMonth(): int
-    {
-        $today = today();
-
-        return ProfilePageVisits::getViewsCount(
-            fromDate: $today->copy()->startOfMonth(),
-            toDate: $today->copy()->endOfMonth(),
-        );
-    }
-
-    public static function getVisitsCount(bool $unique = true, ?Carbon $fromDate = null, ?Carbon $toDate = null): int
-    {
-        return PageVisit::query()
-            ->when(
-                $fromDate,
-                static fn (Builder $query): Builder => $query->where('created_at', '>=', $fromDate),
-            )
-            ->when(
-                $toDate,
-                static fn (Builder $query): Builder => $query->where('created_at', '<=', $toDate),
-            )
-            ->when(
-                $unique,
-                static fn (Builder $query): Builder => $query->select('ip')->distinct(),
-            )
-            ->count($unique ? 'ip' : '*');
-    }
-
-    public static function getUniqueGuestsTodayChart(): array
-    {
-        $fromDate = today()->startOfDay();
-        $toDate = now();
-        $hoursBetween = ceil($fromDate->diffInHours($toDate));
+        $fromDate = $this->currentDate->copy()->startOfDay();
+        $hoursBetween = ceil($fromDate->diffInHours($this->currentDate));
         $data = [];
 
         for ($i = 0; $i < $hoursBetween; $i++) {
-            $currentHourStart = $fromDate->copy()->addHours($i);
-            $currentHourEnd = $currentHourStart->copy()->endOfHour();
+            $from = $fromDate->copy()->addHours($i);
+            $to = $from->copy()->endOfHour();
 
-            $count = PageVisit::query()
-                ->where('created_at', '>=', $currentHourStart)
-                ->where('created_at', '<=', $currentHourEnd)
-                ->distinct()
-                ->count('ip');
-
-            $data[] = $count;
+            $data[] = $this->repository->getUniqueIPAddressesCount(
+                from: $from,
+                to: $to
+            );
         }
 
         return $data;
     }
 
-    public static function getUniqueGuestsThisWeekChart(): array
+    public function getDailyUniqueGuestsThisWeekChart(): array
     {
-        $fromDate = today()->startOfWeek();
-        $toDate = today();
-        $daysBetween = ceil($fromDate->diffInDays($toDate));
+        $fromDate = $this->currentDate->copy()->startOfWeek();
+        $daysBetween = ceil($fromDate->diffInDays($this->currentDate));
         $data = [];
 
         for ($i = 0; $i < $daysBetween; $i++) {
-            $currentDateStart = $fromDate->copy()->addDays($i);
-            $currentDateEnd = $currentDateStart->copy()->endOfDay();
+            $from = $fromDate->copy()->addDays($i);
+            $to = $from->copy()->endOfDay();
 
-            $count = PageVisit::query()
-                ->where('created_at', '>=', $currentDateStart)
-                ->where('created_at', '<=', $currentDateEnd)
-                ->distinct()
-                ->count('ip');
-
-            $data[] = $count;
+            $data[] = $this->repository->getUniqueIPAddressesCount(
+                from: $from,
+                to: $to
+            );
         }
 
         return $data;
     }
 
-    public static function getUniqueGuestsThisMonthChart(): array
+    public function getWeeklyUniqueGuestsThisMonthChart(): array
     {
-        $fromDate = today()->startOfMonth();
-        $toDate = today();
-        $daysBetween = ceil($fromDate->diffInDays($toDate));
+        $fromDate = $this->currentDate->copy()->startOfMonth();
+        $weeksBetween = ceil($fromDate->diffInWeeks($this->currentDate));
         $data = [];
 
-        for ($i = 0; $i < $daysBetween; $i++) {
-            $currentDateStart = $fromDate->copy()->addDays($i);
-            $currentDateEnd = $currentDateStart->copy()->endOfDay();
+        for ($i = 0; $i < $weeksBetween; $i++) {
+            $from = $fromDate->copy()->addWeeks($i);
+            $to = $from->copy()->endOfDay();
 
-            $count = PageVisit::query()
-                ->where('created_at', '>=', $currentDateStart)
-                ->where('created_at', '<=', $currentDateEnd)
-                ->distinct()
-                ->count('ip');
-
-            $data[] = $count;
+            $data[] = $this->repository->getUniqueIPAddressesCount(
+                from: $from,
+                to: $to
+            );
         }
 
         return $data;
-    }
-
-    public static function getChartColor(array $chart): string
-    {
-        if (empty($chart)) {
-            return 'danger';
-        }
-
-        if (count($chart) === 1) {
-            return 'warning';
-        }
-
-        $first = $chart[0];
-        $last = $chart[count($chart) - 1];
-
-        if ($first > $last) {
-            return 'danger';
-        }
-
-        if ($first === $last) {
-            return 'danger';
-        }
-
-        return 'success';
     }
 }

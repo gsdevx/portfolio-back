@@ -22,7 +22,7 @@ class ListWorkCases extends ListRecords
     protected function getHeaderWidgets(): array
     {
         return [
-            WorkCaseResource\Widgets\WorkCasesPageVisitInfo::class,
+            //
         ];
     }
 }

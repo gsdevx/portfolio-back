@@ -104,7 +104,7 @@ class WorkCaseResource extends Resource
                     ->searchable(),
                 AppTables\Columns\SimpleTableColumn::make('views_data_set')
                     ->label('Просмотры')
-                    ->toggleable(isToggledHiddenByDefault: false),
+                    ->toggleable(),
                 Tables\Columns\ToggleColumn::make('is_active')
                     ->label('Показывать'),
             ])
@@ -133,7 +133,7 @@ class WorkCaseResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            WorkCaseResource\Widgets\WorkCasesPageVisitInfo::class,
+            //
         ];
     }
 }

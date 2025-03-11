@@ -15,7 +15,7 @@ class WorkCaseController extends Controller
 {
     public function index(): View
     {
-        $getMappedCases = static fn(): EloquentCollection|SupportCollection => WorkCase::activeOrdered()->getMappedWithMethod('toDTO');
+        $getMappedCases = static fn (): EloquentCollection|SupportCollection => WorkCase::activeOrdered()->getMappedWithMethod('toDTO');
 
         $workCases = auth()->user()
             ? $getMappedCases()

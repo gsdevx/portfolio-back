@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Widgets;
 
 use App\Analytics\PageVisits\PageVisitsAnalytics;
@@ -13,6 +15,7 @@ class PageVisitsStatsOverview extends BaseWidget
         $uniqueGuestsTodayChart = PageVisitsAnalytics::getUniqueGuestsTodayChart();
         $uniqueGuestsThisWeekChart = PageVisitsAnalytics::getUniqueGuestsThisWeekChart();
         $uniqueGuestsThisMonthChart = PageVisitsAnalytics::getUniqueGuestsThisMonthChart();
+
         return [
             Stat::make('Посетителей сегодня', PageVisitsAnalytics::getUniqueGuestsToday())
                 ->chart($uniqueGuestsTodayChart)
@@ -26,9 +29,9 @@ class PageVisitsStatsOverview extends BaseWidget
                 ->chart($uniqueGuestsThisMonthChart)
                 ->color(PageVisitsAnalytics::getChartColor($uniqueGuestsThisMonthChart))
                 ->description('График с начала месяца по дням'),
-            Stat::make('Просмотров профиля сегодня',  PageVisitsAnalytics::getProfilePageViewsToday()),
-            Stat::make('Просмотров профиля за неделю',  PageVisitsAnalytics::getProfilePageViewsThisWeek()),
-            Stat::make('Просмотров профиля за месяц',  PageVisitsAnalytics::getProfilePageViewsThisMonth()),
+            Stat::make('Просмотров профиля сегодня', PageVisitsAnalytics::getProfilePageViewsToday()),
+            Stat::make('Просмотров профиля за неделю', PageVisitsAnalytics::getProfilePageViewsThisWeek()),
+            Stat::make('Просмотров профиля за месяц', PageVisitsAnalytics::getProfilePageViewsThisMonth()),
         ];
     }
 }

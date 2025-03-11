@@ -10,4 +10,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateWorkCase extends CreateRecord
 {
     protected static string $resource = WorkCaseResource::class;
+
+    public function getRedirectUrl(): string
+    {
+        return url(route('filament.admin.resources.work-cases.index'));
+    }
 }

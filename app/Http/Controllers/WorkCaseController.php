@@ -14,7 +14,7 @@ class WorkCaseController extends Controller
     public function index(GetPaginatedList $getWorkCases): View
     {
         return view('pages.work-cases.index', [
-            'paginator' => $getWorkCases(1),
+            'paginator' => $getWorkCases(),
         ]);
     }
 

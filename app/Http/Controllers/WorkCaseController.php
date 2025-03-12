@@ -4,34 +4,24 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\WorkCase;
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use App\Action\WorkCase\FindBySlug;
+use App\Action\WorkCase\GetPaginatedList;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Collection as SupportCollection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class WorkCaseController extends Controller
 {
-    public function index(): View
+    public function index(GetPaginatedList $getWorkCases): View
     {
-        $getMappedCases = static fn (): EloquentCollection|SupportCollection => WorkCase::activeOrdered()->getMappedWithMethod('toDTO');
-
-        $workCases = auth()->user()
-            ? $getMappedCases()
-            : Cache::rememberForever('work_cases', $getMappedCases);
-
-        return view('pages.work-cases.index', compact('workCases'));
+        return view('pages.work-cases.index', [
+            'paginator' => $getWorkCases(1),
+        ]);
     }
 
-    public function show(string $slug): View
+    public function show(string $slug, FindBySlug $findBySlug): View
     {
-        $workCase = WorkCase::query()
-            ->where(['is_active' => true, 'slug' => $slug])
-            ->firstOrFail();
-
         return view('pages.work-cases.show', [
-            'workCase' => $workCase->mapper()->toDTO(),
+            'workCase' => $findBySlug($slug),
         ]);
     }
 }

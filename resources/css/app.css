@@ -30,10 +30,16 @@
     object-fit: cover;
 }
 
-/*.work-case-description {*/
-/*    white-space: pre-wrap;*/
-/*}*/
-
 .work-case-description h3 {
     font-size: 1.5rem !important;
+}
+
+.pagination {
+    --bs-pagination-color: var(--bs-dark);
+    --bs-pagination-hover-color: var(--bs-dark);
+    --bs-pagination-focus-color: var(--bs-dark);
+    --bs-pagination-focus-box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .0);
+    --bs-pagination-active-color: #fff;
+    --bs-pagination-active-bg: var(--bs-dark);
+    --bs-pagination-active-border-color: #000;
 }

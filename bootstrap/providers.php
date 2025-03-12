@@ -6,4 +6,6 @@ return [
     App\Providers\AppServiceProvider::class,
     App\Providers\Filament\AdminPanelProvider::class,
     App\Providers\ViewServiceProvider::class,
+    App\Providers\AliasServiceProvider::class,
+    Jaybizzle\LaravelCrawlerDetect\LaravelCrawlerDetectServiceProvider::class,
 ];

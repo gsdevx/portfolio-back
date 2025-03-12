@@ -11,8 +11,7 @@ class GetPaginatedList
 {
     public function __construct(
         private WorkCaseRepository $workCaseRepository
-    ) {
-    }
+    ) {}
 
     public function __invoke(int $perPage = 12): Paginator
     {

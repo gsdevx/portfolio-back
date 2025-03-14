@@ -33,12 +33,16 @@ class WorkCaseRepository
     public function findSimilar(WorkCaseDTO $workCase, int $limit = 6): Collection
     {
         $tags = $workCase->tags;
+        $data = collect();
 
-        return WorkCase::activeOrdered()
+        WorkCase::activeOrdered()
             ->where('id', '!=', $workCase->id)
-            ->take($limit)
-            ->get()
-            ->filter(static fn (WorkCase $workCase): bool => $workCase->hasAnyTags($tags))
-            ->map(static fn (WorkCase $workCase): WorkCaseDTO => $workCase->mapper()->toDTO());
+            ->each(static function (WorkCase $workCase) use ($data, $limit, $tags): void {
+                if ($data->count() <= $limit && $workCase->hasAnyTags($tags)) {
+                    $data->push($workCase->mapper()->toDTO());
+                }
+            });
+
+        return $data;
     }
 }

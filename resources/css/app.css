@@ -43,3 +43,9 @@
     --bs-pagination-active-bg: var(--bs-dark);
     --bs-pagination-active-border-color: #000;
 }
+
+@media(max-width: 768px) {
+    .card-img-top {
+        height: auto;
+    }
+}

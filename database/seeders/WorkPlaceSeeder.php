@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\WorkPlace;
+use App\Portfolio\Models\WorkPlace;
 use Illuminate\Database\Seeder;
 
 class WorkPlaceSeeder extends Seeder

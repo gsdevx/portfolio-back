@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\WorkPlace;
+use App\Portfolio\Models\WorkPlace;
 use Database\Factories\Traits\ActiveSetter;
 use Database\Factories\Traits\InactiveSetter;
 use Illuminate\Database\Eloquent\Factories\Factory;

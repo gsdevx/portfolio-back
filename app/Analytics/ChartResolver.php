@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Analytics;
 
-use App\Enums\ChartTrend;
+use App\Analytics\Enums\ChartTrend;
 
 class ChartResolver
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WorkCaseController;
-use App\Http\Middleware\PageVisitMiddleware;
+use App\Analytics\Http\Middleware\PageVisitMiddleware;
+use App\Portfolio\Http\Controllers\ProfileController;
+use App\Portfolio\Http\Controllers\WorkCaseController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(PageVisitMiddleware::class)->group(static function (): void {

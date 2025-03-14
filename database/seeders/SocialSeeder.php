@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Social;
+use App\Portfolio\Models\Social;
 use Illuminate\Database\Seeder;
 
 class SocialSeeder extends Seeder

@@ -7,6 +7,7 @@ namespace App\Portfolio\Repositories;
 use App\Portfolio\DTO\WorkCaseDTO;
 use App\Portfolio\Models\WorkCase;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Collection;
 
 class WorkCaseRepository
 {
@@ -22,5 +23,22 @@ class WorkCaseRepository
     public function findActiveBySlug(string $slug): ?WorkCase
     {
         return WorkCase::query()->firstWhere(['is_active' => true, 'slug' => $slug]);
+    }
+
+    /**
+     * Костыль, но по другому никак, whereJsonContains не хочет работать с кириллицей
+     *
+     * @return Collection<WorkCaseDTO>
+     */
+    public function findSimilar(WorkCaseDTO $workCase, int $limit = 6): Collection
+    {
+        $tags = $workCase->tags;
+
+        return WorkCase::activeOrdered()
+            ->where('id', '!=', $workCase->id)
+            ->take($limit)
+            ->get()
+            ->filter(static fn (WorkCase $workCase): bool => $workCase->hasAnyTags($tags))
+            ->map(static fn (WorkCase $workCase): WorkCaseDTO => $workCase->mapper()->toDTO());
     }
 }

@@ -7,6 +7,7 @@ namespace App\Portfolio\DTO;
 readonly class WorkCaseDTO
 {
     public function __construct(
+        public ?int $id,
         public string $title,
         public string $slug,
         public ?string $previewUrl,

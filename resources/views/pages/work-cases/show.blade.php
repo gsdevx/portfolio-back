@@ -36,4 +36,16 @@
             </div>
         </div>
     </div>
+
+    @if($similar->count())
+            <h2 class="mt-5">Возможно будет интересно</h2>
+
+            <div class="mt-2 row row-cols-xl-3 row-cols-md-2 row-cols-sm-1 row-cols-1 g-4 mb-5">
+                @foreach($similar as $item)
+                    <div class="col">
+                        <x-work-case.card :item="$item" />
+                    </div>
+                @endforeach
+            </div>
+    @endif
 @endsection

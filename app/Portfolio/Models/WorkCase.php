@@ -31,10 +31,6 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
- * @property-read int $today_views
- * @property-read int $today_unique_views
- * @property-read int $all_time_views
- * @property-read int $all_time_unique_views
  * @property-read array<int, string|int>[] $views_data_set
  */
 class WorkCase extends Model implements HasMedia, Mappable, ShouldHaveActiveOrderedScope
@@ -95,5 +91,10 @@ class WorkCase extends Model implements HasMedia, Mappable, ShouldHaveActiveOrde
                 ['Все время (У)', $this->getViewsCount(true)],
             ];
         });
+    }
+
+    public function hasAnyTags(array $tags): bool
+    {
+        return ! empty(array_intersect($this->tags, $tags));
     }
 }

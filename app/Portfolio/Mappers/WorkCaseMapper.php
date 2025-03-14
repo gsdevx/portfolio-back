@@ -15,6 +15,7 @@ readonly class WorkCaseMapper implements ModelMapper
     public function toDTO(): WorkCaseDTO
     {
         return new WorkCaseDTO(
+            id: $this->workCase->id,
             title: $this->workCase->title,
             slug: $this->workCase->slug,
             previewUrl: $this->workCase->getFirstMediaUrl('previews'),

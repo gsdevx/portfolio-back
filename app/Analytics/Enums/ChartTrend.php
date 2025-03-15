@@ -30,7 +30,7 @@ enum ChartTrend
             self::POSITIVE => 'heroicon-m-arrow-trending-up',
             self::NEGATIVE => 'heroicon-m-arrow-trending-down',
             self::PLATO => 'heroicon-m-arrow-long-right',
-            self::NOT_ENOUGH_DATA => 'heroicon-clock',
+            self::NOT_ENOUGH_DATA => 'heroicon-m-clock',
         };
     }
 }

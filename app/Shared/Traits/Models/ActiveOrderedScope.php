@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Traits;
+namespace App\Shared\Traits\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 

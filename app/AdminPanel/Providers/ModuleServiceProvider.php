@@ -21,7 +21,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 
-class AdminPanelProvider extends PanelProvider
+class ModuleServiceProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {

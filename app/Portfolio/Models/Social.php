@@ -7,7 +7,7 @@ namespace App\Portfolio\Models;
 use App\Portfolio\Mappers\SocialMapper;
 use App\Shared\Contracts\Model\Mappable;
 use App\Shared\Contracts\Model\ShouldHaveActiveOrderedScope;
-use App\Shared\Traits\ActiveOrderedScope;
+use App\Shared\Traits\Models\ActiveOrderedScope;
 use Database\Factories\SocialFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

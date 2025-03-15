@@ -7,7 +7,7 @@ namespace App\Portfolio\Models;
 use App\Portfolio\Mappers\ContactMapper;
 use App\Shared\Contracts\Model\Mappable;
 use App\Shared\Contracts\Model\ShouldHaveActiveOrderedScope;
-use App\Shared\Traits\ActiveOrderedScope;
+use App\Shared\Traits\Models\ActiveOrderedScope;
 use Database\Factories\ContactFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -62,4 +62,30 @@ class PageVisitRepository
             ->distinct()
             ->count('ip');
     }
+
+    public function getRecordsCountByPathToday(string $path): int
+    {
+        $today = today();
+
+        return $this->getRecordsCountByPath(
+            path: $path,
+            from: $today->copy()->startOfDay(),
+            to: $today->copy()->endOfDay()
+        );
+    }
+
+    public function getRecordsCountByPath(string $path, ?Carbon $from = null, ?Carbon $to = null): int
+    {
+        return PageVisit::query()
+            ->where('path', $path)
+            ->when(
+                $from,
+                static fn (Builder $query): Builder => $query->where('created_at', '>=', $from),
+            )
+            ->when(
+                $to,
+                static fn (Builder $query): Builder => $query->where('created_at', '<=', $to),
+            )
+            ->count();
+    }
 }

@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * @property int $id
@@ -96,5 +97,13 @@ class WorkCase extends Model implements HasMedia, Mappable, ShouldHaveActiveOrde
     public function hasAnyTags(array $tags): bool
     {
         return ! empty(array_intersect($this->tags, $tags));
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('preview-thumb')
+            ->format('webp')
+            ->quality(85)
+            ->nonQueued();
     }
 }

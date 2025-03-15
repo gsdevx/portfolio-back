@@ -36,6 +36,7 @@ class WorkCaseResource extends Resource
                 Forms\Components\SpatieMediaLibraryFileUpload::make('preview')
                     ->label('Превью')
                     ->collection('previews')
+                    ->conversion('preview-thumb')
                     ->maxSize(10240)
                     ->required(),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('image')

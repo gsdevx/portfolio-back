@@ -21,6 +21,11 @@ class SendPageVisitsDailyReport extends Command
     public function handle(): void
     {
         try {
+            if (!config('notifications.page_visits.enabled')) {
+                $this->warn('Отправка отчета отключена');
+                return;
+            }
+
             $report = (new PageVisitsDailyReport)->makeReport();
             $message = (new PageVisitsReportDTOMapper($report))->toMessageDTO();
             $this->sendNotification($message);

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Traits;
+namespace App\Shared\Traits\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -15,6 +15,6 @@ trait DateSpanAttribute
 {
     public function dateSpan(): Attribute
     {
-        return Attribute::get(fn (): string => $this->start_date->format('d.m.Y').' - '.$this->end_date->format('d.m.Y'));
+        return Attribute::get(fn (): string => $this->start_date->format('d.m.Y') . ' - ' . $this->end_date->format('d.m.Y'));
     }
 }

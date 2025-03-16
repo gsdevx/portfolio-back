@@ -11,9 +11,11 @@ use Illuminate\Support\Collection;
 
 class WorkCaseRepository
 {
+    protected static string $modelClass = WorkCase::class;
+
     public function getActiveOrderedWithPagination(int $perPage = 12): Paginator
     {
-        $paginator = WorkCase::activeOrdered()->paginate($perPage);
+        $paginator = self::$modelClass::activeOrdered()->paginate($perPage);
         $paginator->getCollection()
             ->transform(fn (WorkCase $workCase): WorkCaseDTO => $workCase->mapper()->toDTO());
 
@@ -22,7 +24,7 @@ class WorkCaseRepository
 
     public function findActiveBySlug(string $slug): ?WorkCase
     {
-        return WorkCase::query()->firstWhere(['is_active' => true, 'slug' => $slug]);
+        return self::$modelClass::query()->firstWhere(['is_active' => true, 'slug' => $slug]);
     }
 
     /**
@@ -35,7 +37,7 @@ class WorkCaseRepository
         $tags = $workCase->tags;
         $data = collect();
 
-        WorkCase::activeOrdered()
+        self::$modelClass::activeOrdered()
             ->where('id', '!=', $workCase->id)
             ->each(static function (WorkCase $workCase) use ($data, $limit, $tags): void {
                 if ($data->count() <= $limit && $workCase->hasAnyTags($tags)) {

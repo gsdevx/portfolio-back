@@ -24,13 +24,13 @@ class ConvertWorkCasesPreviewImagesToWebp extends Command
         try {
             WorkCase::query()->chunk(100, function (Collection $workCases) {
                 $workCases->each(function (WorkCase $workCase): void {
-                    $this->info('Проверка возможности конвертации для кейса '.$workCase->title);
+                    $this->info('Проверка возможности конвертации для кейса ' . $workCase->title);
                     $preview = $workCase->getFirstMedia('previews');
 
                     if ($preview && ! $preview->hasGeneratedConversion('preview-thumb')) {
                         $preview->markAsConversionGenerated('preview-thumb');
 
-                        Artisan::call('media-library:regenerate --ids='.$preview->id);
+                        Artisan::call('media-library:regenerate --ids=' . $preview->id);
                         $this->info('Превью конвертировано в формат WEBP');
                     } else {
                         $this->info('Превью отсутствует либо было уже конвертировано');

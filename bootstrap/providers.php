@@ -3,10 +3,9 @@
 declare(strict_types=1);
 
 return [
-    App\AdminPanel\Providers\AdminPanelProvider::class,
-    App\Portfolio\Providers\ConsoleServiceProvider::class,
-    App\Shared\Providers\AliasServiceProvider::class,
-    App\Shared\Providers\AppServiceProvider::class,
-    App\Shared\Providers\ViewServiceProvider::class,
+    App\Shared\Providers\ModuleServiceProvider::class,
+    App\AdminPanel\Providers\ModuleServiceProvider::class,
+    App\Portfolio\Providers\ModuleServiceProvider::class,
+    App\Report\Providers\ModuleServiceProvider::class,
     Jaybizzle\LaravelCrawlerDetect\LaravelCrawlerDetectServiceProvider::class,
 ];

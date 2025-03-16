@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Database\Factories\Traits;
+namespace App\Shared\Traits\DatabaseFactories;
 
 /**
  * @method state(callable|array $state)

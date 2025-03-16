@@ -90,4 +90,14 @@ readonly class PageVisitsAnalytics
 
         return $data;
     }
+
+    public function getProfilePageVisitsToday(): int
+    {
+        return $this->repository->getRecordsCountByPathToday('/');
+    }
+
+    public function getWorkCasesPageVisitsToday(): int
+    {
+        return $this->repository->getRecordsCountByPathToday('work-cases');
+    }
 }

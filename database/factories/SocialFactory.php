@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Portfolio\Models\Social;
-use Database\Factories\Traits\ActiveSetter;
-use Database\Factories\Traits\InactiveSetter;
+use App\Shared\Traits\DatabaseFactories\ActiveSetter;
+use App\Shared\Traits\DatabaseFactories\InactiveSetter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

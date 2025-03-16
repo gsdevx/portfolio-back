@@ -5,20 +5,26 @@ declare(strict_types=1);
 namespace App\Portfolio\Http\Controllers;
 
 use App\Portfolio\Mappers\Partial\ProfileMapper;
-use App\Portfolio\Models\Education;
-use App\Portfolio\Models\Tool;
-use App\Portfolio\Models\WorkPlace;
+use App\Portfolio\Repositories\EducationRepository;
+use App\Portfolio\Repositories\ToolRepository;
+use App\Portfolio\Repositories\WorkPlaceRepository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Routing\Controller;
 
 class ProfileController extends Controller
 {
+    public function __construct(
+        private readonly EducationRepository $educationRepository,
+        private readonly WorkPlaceRepository $workPlaceRepository,
+        private readonly ToolRepository $toolRepository,
+    ) {}
+
     public function __invoke(): View
     {
         $mapper = new ProfileMapper(
-            educationDTOs: Education::activeOrdered()->getMappedWithMethod('toDTO'),
-            workPlaceDTOs: WorkPlace::activeOrdered()->getMappedWithMethod('toDTO'),
-            toolDTOs: Tool::activeOrdered()->getMappedWithMethod('toDTO')
+            educationDTOs: $this->educationRepository->getActiveOrdered(),
+            workPlaceDTOs: $this->workPlaceRepository->getActiveOrdered(),
+            toolDTOs: $this->toolRepository->getActiveOrdered()
         );
 
         return view('pages.profile', $mapper->toDTO());

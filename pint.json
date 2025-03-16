@@ -8,6 +8,17 @@
         "strict_comparison": true,
         "strict_param": true,
         "declare_strict_types": true,
-        "no_superfluous_phpdoc_tags": true
+        "no_superfluous_phpdoc_tags": true,
+        "cast_spaces": {
+            "space": "single"
+        },
+        "concat_space": {
+            "spacing": "one"
+        },
+        "return_type_declaration": {
+            "space_before": "none"
+        },
+        "single_quote": true,
+        "trailing_comma_in_multiline": true
     }
 }

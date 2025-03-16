@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Reports\Mappers;
 
+use App\Notification\DTO\MessageDTO;
 use App\Reports\DTO\PageVisitsReportDTO;
 
 readonly class PageVisitsReportDTOMapper
@@ -12,15 +13,15 @@ readonly class PageVisitsReportDTOMapper
         private PageVisitsReportDTO $pageVisitsReportDTO,
     ) {}
 
-    public function toHTMLMessageText(): string
+    public function toMessageDTO(): MessageDTO
     {
-        $header = '<b>Отчет по посещениям страниц, ' . now()->format('d.m.Y') . '</b>';
-        $body = implode(PHP_EOL, [
+        $subject = 'Отчет по посещениям страниц, ' . now()->format('d.m.Y');
+        $body = PHP_EOL . implode(PHP_EOL, [
             'Уникальных гостей сегодня: ' . $this->pageVisitsReportDTO->uniqueGuestsToday,
             'Просмотров профиля: ' . $this->pageVisitsReportDTO->profilePageVisitsCount,
             'Просмотров страницы кейсов: ' . $this->pageVisitsReportDTO->workCasesPageVisitsCount,
         ]);
 
-        return $header . PHP_EOL . PHP_EOL . $body;
+        return new MessageDTO($subject, $body);
     }
 }

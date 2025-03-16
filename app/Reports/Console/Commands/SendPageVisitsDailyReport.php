@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Reports\Console\Commands;
 
 use App\Notification\Contracts\NotificationStrategy;
+use App\Notification\DTO\MessageDTO;
 use App\Notification\NotificationProcessor;
 use App\Reports\Mappers\PageVisitsReportDTOMapper;
 use App\Reports\PageVisitsDailyReport;
@@ -21,7 +22,7 @@ class SendPageVisitsDailyReport extends Command
     {
         try {
             $report = (new PageVisitsDailyReport)->makeReport();
-            $message = (new PageVisitsReportDTOMapper($report))->toHTMLMessageText();
+            $message = (new PageVisitsReportDTOMapper($report))->toMessageDTO();
             $this->sendNotification($message);
 
             $this->info('Отчет отправлен');
@@ -40,7 +41,8 @@ class SendPageVisitsDailyReport extends Command
 
     private function getNotificationStrategy(): NotificationStrategy
     {
-        $strategyClass = config('notifications.page_visits.strategy');
+        $strategyAlias = config('notifications.page_visits.strategy');
+        $strategyClass = config('notifications.strategies.' . $strategyAlias);
 
         return new $strategyClass;
     }
@@ -50,7 +52,7 @@ class SendPageVisitsDailyReport extends Command
         return config('notifications.page_visits.recipients');
     }
 
-    private function sendNotification(string $message): void
+    private function sendNotification(MessageDTO $message): void
     {
         $processor = $this->getNotificationProcessor();
         $recipients = $this->getRecipients();

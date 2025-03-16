@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PageVisitRepository
 {
+    protected static string $modelClass = PageVisit::class;
+
     public function getUniqueIPAddressesTodayCount(?string $path = null): int
     {
         $today = today();
@@ -45,7 +47,7 @@ class PageVisitRepository
 
     public function getUniqueIPAddressesCount(?string $path = null, ?Carbon $from = null, ?Carbon $to = null): int
     {
-        return PageVisit::query()
+        return self::$modelClass::query()
             ->select('ip')
             ->when(
                 $path,
@@ -76,7 +78,7 @@ class PageVisitRepository
 
     public function getRecordsCountByPath(string $path, ?Carbon $from = null, ?Carbon $to = null): int
     {
-        return PageVisit::query()
+        return self::$modelClass::query()
             ->where('path', $path)
             ->when(
                 $from,

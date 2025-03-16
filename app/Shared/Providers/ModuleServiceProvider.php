@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Shared\Providers;
 
 use App\Portfolio\Mappers\Partial\FooterMapper;
-use App\Portfolio\Models\Contact;
-use App\Portfolio\Models\Social;
+use App\Portfolio\Repositories\ContactRepository;
+use App\Portfolio\Repositories\SocialRepository;
 use App\Settings\Mappers\GeneralSettingsMapper;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\AliasLoader;
@@ -49,10 +49,12 @@ class ModuleServiceProvider extends ServiceProvider
     private function bootViewSharing(): void
     {
         View::composer('partials.footer', function (\Illuminate\View\View $view) {
-            $view->with('footer', (new FooterMapper(
-                socialDTOs: Social::activeOrdered()->getMappedWithMethod('toDTO'),
-                contactDTOs: Contact::activeOrdered()->getMappedWithMethod('toDTO'),
-            ))->toDTO());
+            $footerMapper = new FooterMapper(
+                socialDTOs: (new SocialRepository)->getActiveOrdered(),
+                contactDTOs: (new ContactRepository)->getActiveOrdered(),
+            );
+
+            $view->with('footer', $footerMapper->toDTO());
         });
 
         View::share('generalSettings', GeneralSettingsMapper::makeFromAppContainer()->toDTO());

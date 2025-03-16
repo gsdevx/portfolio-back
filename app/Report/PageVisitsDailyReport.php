@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Reports;
+namespace App\Report;
 
 use App\Analytics\PageVisitsAnalytics;
-use App\Reports\DTO\PageVisitsReportDTO;
+use App\Report\DTO\PageVisitsReportDTO;
 
 readonly class PageVisitsDailyReport
 {

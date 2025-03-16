@@ -6,6 +6,6 @@ return [
     App\Shared\Providers\ModuleServiceProvider::class,
     App\AdminPanel\Providers\ModuleServiceProvider::class,
     App\Portfolio\Providers\ModuleServiceProvider::class,
-    App\Reports\Providers\ModuleServiceProvider::class,
+    App\Report\Providers\ModuleServiceProvider::class,
     Jaybizzle\LaravelCrawlerDetect\LaravelCrawlerDetectServiceProvider::class,
 ];

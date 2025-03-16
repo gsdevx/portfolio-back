@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Reports\DTO;
+namespace App\Report\DTO;
 
 readonly class PageVisitsReportDTO
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Reports\Mappers;
+namespace App\Report\Mappers;
 
 use App\Notification\DTO\MessageDTO;
-use App\Reports\DTO\PageVisitsReportDTO;
+use App\Report\DTO\PageVisitsReportDTO;
 
 readonly class PageVisitsReportDTOMapper
 {

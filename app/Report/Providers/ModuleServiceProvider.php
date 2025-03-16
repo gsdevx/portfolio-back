@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Reports\Providers;
+namespace App\Report\Providers;
 
-use App\Reports\Console\Commands\SendPageVisitsDailyReport;
+use App\Report\Console\Commands\SendPageVisitsDailyReport;
 use Illuminate\Support\ServiceProvider;
 
 class ModuleServiceProvider extends ServiceProvider

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Reports\Console\Commands;
+namespace App\Report\Console\Commands;
 
 use App\Notification\Contracts\NotificationStrategy;
 use App\Notification\DTO\MessageDTO;
 use App\Notification\NotificationProcessor;
-use App\Reports\Mappers\PageVisitsReportDTOMapper;
-use App\Reports\PageVisitsDailyReport;
+use App\Report\Mappers\PageVisitsReportDTOMapper;
+use App\Report\PageVisitsDailyReport;
 use Exception;
 use Illuminate\Console\Command;
 

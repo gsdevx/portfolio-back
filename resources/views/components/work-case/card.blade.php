@@ -18,7 +18,7 @@
                     <x-tag-classic text="{{ $tag }}"/>
                 @endforeach
             </small>
-            <a class="btn btn-sm btn-outline-dark rounded-4">Подробнее</a>
+            <a href="{{ route('work-cases.show', ['slug' => $item->slug]) }}" class="btn btn-sm btn-outline-dark rounded-4">Подробнее</a>
         </div>
     </div>
     @auth

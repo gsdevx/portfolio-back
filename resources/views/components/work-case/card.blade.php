@@ -1,22 +1,28 @@
 @props(['item'])
 
-<div class="card rounded-4">
+<div class="card card-custom border-0" x-data="{ mouseOn: false }" @mouseenter="mouseOn = true" @mouseleave="mouseOn = false" >
     @if($item->previewUrl)
         <a href="{{ route('work-cases.show', ['slug' => $item->slug]) }}">
-            <img class="rounded-top-3 card-img-top" src="{{ $item->previewUrl }}" alt="{{ $item->title }}">
+            <img class="card-img-top rounded-0" src="{{ $item->previewUrl }}" alt="{{ $item->title }}">
         </a>
     @endif
-
-    <div class="card-body">
-        <a href="{{ route('work-cases.show', ['slug' => $item->slug]) }}" class="h5 text-decoration-none card-title text-truncate">
-            {{ $item->title }}
-        </a>
-        <p class="card-text text-truncate">{{ $item->summary }}</p>
-        <small class="d-flex gap-2">
-            @foreach($item->tags as $tag)
-                <x-tag text="{{ $tag }}"/>
-            @endforeach
-        </small>
+    <div class="card-img-overlay rounded-0" x-show="mouseOn" x-transition>
+        <div class="d-flex h-100 flex-column justify-content-between">
+            <div>
+                <a href="{{ route('work-cases.show', ['slug' => $item->slug]) }}" class="h5 text-decoration-none card-title text-truncate">
+                    {{ $item->title }}
+                </a>
+                <p class="card-text">{{ $item->summary }}</p>
+                <small class="d-flex gap-2">
+                    @foreach($item->tags as $tag)
+                        <x-tag text="{{ $tag }}"/>
+                    @endforeach
+                </small>
+            </div>
+            <div class="d-flex justify-content-end">
+                <a href="{{ route('work-cases.show', ['slug' => $item->slug]) }}" class="btn btn-outline-light rounded-4">Подробнее</a>
+            </div>
+        </div>
     </div>
     @auth
         <div class="card-footer d-flex justify-content-between align-items-center">

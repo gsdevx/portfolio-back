@@ -1,9 +1,9 @@
 @props(['item'])
 
-<div class="card rounded-4">
+<div class="custom-card card rounded-0 border-0">
     @if($item->previewUrl)
         <a href="{{ route('work-cases.show', ['slug' => $item->slug]) }}">
-            <img class="rounded-top-3 card-img-top" src="{{ $item->previewUrl }}" alt="{{ $item->title }}">
+            <img class="rounded-0 card-img-top" src="{{ $item->previewUrl }}" alt="{{ $item->title }}">
         </a>
     @endif
 
@@ -12,11 +12,14 @@
             {{ $item->title }}
         </a>
         <p class="card-text text-truncate">{{ $item->summary }}</p>
-        <small class="d-flex gap-2">
-            @foreach($item->tags as $tag)
-                <x-tag text="{{ $tag }}"/>
-            @endforeach
-        </small>
+        <div class="mt-4 d-flex justify-content-between align-items-center">
+            <small class="d-flex gap-2">
+                @foreach($item->tags as $tag)
+                    <x-tag-classic text="{{ $tag }}"/>
+                @endforeach
+            </small>
+            <a class="btn btn-sm btn-outline-dark rounded-4">Подробнее</a>
+        </div>
     </div>
     @auth
         <div class="card-footer d-flex justify-content-between align-items-center">

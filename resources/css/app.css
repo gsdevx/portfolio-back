@@ -44,6 +44,12 @@
     --bs-pagination-active-border-color: #000;
 }
 
+.custom-card {
+    box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.4);
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.4);
+    -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.4);
+}
+
 @media(max-width: 768px) {
     .card-img-top {
         height: auto;

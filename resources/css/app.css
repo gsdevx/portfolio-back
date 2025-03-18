@@ -44,12 +44,6 @@
     --bs-pagination-active-border-color: #000;
 }
 
-.card-custom .card-img-overlay {
-    background: rgba(0, 0, 0, 0.55);
-    color: var(--bs-light);
-    backdrop-filter: blur(10px);
-}
-
 @media(max-width: 768px) {
     .card-img-top {
         height: auto;

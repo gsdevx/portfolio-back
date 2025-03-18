@@ -1,5 +1,5 @@
 @props(['text'])
 
-<span class="badge border text-light border-light rounded-4">
+<span class="badge border text-dark border-dark rounded-4">
     {{ $text }}
 </span>

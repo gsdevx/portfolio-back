@@ -21,8 +21,9 @@ class SendPageVisitsDailyReport extends Command
     public function handle(): void
     {
         try {
-            if (!config('notifications.page_visits.enabled')) {
+            if (! config('notifications.page_visits.enabled')) {
                 $this->warn('Отправка отчета отключена');
+
                 return;
             }
 

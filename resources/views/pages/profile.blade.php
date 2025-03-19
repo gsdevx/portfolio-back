@@ -71,6 +71,10 @@
                         </div>
                     </div>
                 @endif
+
+                <div class="d-flex justify-content-end mt-4">
+                    <a href="{{ route('work-cases.index') }}" class="btn btn-outline-dark rounded-4">Перейти к кейсам</a>
+                </div>
             </div>
         </div>
     </div>

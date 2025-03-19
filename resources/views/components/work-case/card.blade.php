@@ -1,14 +1,15 @@
 @props(['item'])
+@php($itemUrl = route('work-cases.show', ['slug' => $item->slug]))
 
 <div class="custom-card card rounded-0 border-0">
     @if($item->previewUrl)
-        <a href="{{ route('work-cases.show', ['slug' => $item->slug]) }}">
+        <a href="{{ $itemUrl }}">
             <img class="rounded-0 card-img-top" src="{{ $item->previewUrl }}" alt="{{ $item->title }}">
         </a>
     @endif
 
     <div class="card-body">
-        <a href="{{ route('work-cases.show', ['slug' => $item->slug]) }}" class="h5 text-decoration-none card-title text-truncate">
+        <a href="{{ $itemUrl }}" class="h5 text-decoration-none card-title text-truncate">
             {{ $item->title }}
         </a>
         <p class="card-text text-truncate">{{ $item->summary }}</p>

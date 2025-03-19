@@ -20,11 +20,11 @@
         <h1>Сайт временно не доступен</h1>
     </div>
 @else
-    <div class="d-flex flex-column min-vh-100">
+    <div x-data="{ headerFixed: false }" class="d-flex flex-column min-vh-100">
         @include('partials/header')
 
-        <div class="flex-grow-1 mb-5">
-            <div class="container">
+        <div @scroll.window="headerFixed = window.pageYOffset > 135" class="flex-grow-1 mb-5">
+            <div :class="headerFixed ? 'mt-100' : ''" class="container">
                 @yield('content')
             </div>
         </div>

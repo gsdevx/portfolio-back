@@ -31,7 +31,7 @@
 
             <div class="d-flex gap-2 flex-wrap">
                 @foreach($workCase->tags as $tag)
-                    <x-tag text="{{ $tag }}"/>
+                    <x-tag-classic text="{{ $tag }}"/>
                 @endforeach
             </div>
         </div>

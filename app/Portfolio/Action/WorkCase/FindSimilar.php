@@ -8,7 +8,7 @@ use App\Portfolio\DTO\WorkCaseDTO;
 use App\Portfolio\Repositories\WorkCaseRepository;
 use Illuminate\Support\Collection;
 
-class FindSimilar
+readonly class FindSimilar
 {
     public function __construct(
         private WorkCaseRepository $workCaseRepository

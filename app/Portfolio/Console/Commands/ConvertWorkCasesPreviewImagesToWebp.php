@@ -16,7 +16,7 @@ class ConvertWorkCasesPreviewImagesToWebp extends Command
 
     protected $description = 'Конвертировать превью кейсов в формат WEBP';
 
-    public function handle()
+    public function handle(): void
     {
         $this->info('Запуск конвертации...');
 

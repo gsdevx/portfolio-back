@@ -7,7 +7,7 @@ namespace App\Portfolio\Action\WorkCase;
 use App\Portfolio\Repositories\WorkCaseRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 
-class GetPaginatedList
+readonly class GetPaginatedList
 {
     public function __construct(
         private WorkCaseRepository $workCaseRepository

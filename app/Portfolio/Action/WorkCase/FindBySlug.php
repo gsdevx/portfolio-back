@@ -8,7 +8,7 @@ use App\Portfolio\DTO\WorkCaseDTO;
 use App\Portfolio\Repositories\WorkCaseRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class FindBySlug
+readonly class FindBySlug
 {
     public function __construct(
         private WorkCaseRepository $workCaseRepository

@@ -21,7 +21,8 @@ readonly class PageVisitsDailyReport
         return new PageVisitsReportDTO(
             uniqueGuestsToday: $this->analytics->getUniqueGuestsToday(),
             profilePageVisitsCount: $this->analytics->getProfilePageVisitsToday(),
-            workCasesPageVisitsCount: $this->analytics->getWorkCasesPageVisitsToday()
+            workCasesIndexPageVisitsCount: $this->analytics->getWorkCasesIndexPageVisitsToday(),
+            workCasesShowPageVisitsToday: $this->analytics->getWorkCasesShowPageVisitsToday(),
         );
     }
 }

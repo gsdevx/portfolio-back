@@ -9,6 +9,7 @@ readonly class PageVisitsReportDTO
     public function __construct(
         public int $uniqueGuestsToday,
         public int $profilePageVisitsCount,
-        public int $workCasesPageVisitsCount,
+        public int $workCasesIndexPageVisitsCount,
+        public int $workCasesShowPageVisitsToday,
     ) {}
 }

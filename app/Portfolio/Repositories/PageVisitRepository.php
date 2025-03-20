@@ -78,8 +78,10 @@ class PageVisitRepository
 
     public function getRecordsCountByPath(string $path, ?Carbon $from = null, ?Carbon $to = null): int
     {
+        $likeCondition = str($path)->contains('%');
+
         return self::$modelClass::query()
-            ->where('path', $path)
+            ->where('path', $likeCondition ? 'like' : '=', $path)
             ->when(
                 $from,
                 static fn (Builder $query): Builder => $query->where('created_at', '>=', $from),

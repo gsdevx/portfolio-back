@@ -96,8 +96,13 @@ readonly class PageVisitsAnalytics
         return $this->repository->getRecordsCountByPathToday('/');
     }
 
-    public function getWorkCasesPageVisitsToday(): int
+    public function getWorkCasesIndexPageVisitsToday(): int
     {
         return $this->repository->getRecordsCountByPathToday('work-cases');
+    }
+
+    public function getWorkCasesShowPageVisitsToday(): int
+    {
+        return $this->repository->getRecordsCountByPathToday('work-cases/%');
     }
 }

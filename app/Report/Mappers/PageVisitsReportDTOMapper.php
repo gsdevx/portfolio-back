@@ -19,7 +19,8 @@ readonly class PageVisitsReportDTOMapper
         $body = PHP_EOL . implode(PHP_EOL, [
             'Уникальных гостей сегодня: ' . $this->pageVisitsReportDTO->uniqueGuestsToday,
             'Просмотров профиля: ' . $this->pageVisitsReportDTO->profilePageVisitsCount,
-            'Просмотров страницы кейсов: ' . $this->pageVisitsReportDTO->workCasesPageVisitsCount,
+            'Просмотров страницы с кейсами: ' . $this->pageVisitsReportDTO->workCasesIndexPageVisitsCount,
+            'Просмотров конкретных кейсов: ' . $this->pageVisitsReportDTO->workCasesShowPageVisitsToday,
         ]);
 
         return new MessageDTO($subject, $body);

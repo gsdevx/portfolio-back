@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Portfolio\Models;
+namespace App\Shared\Models;
 
 use App\Portfolio\Mappers\SocialMapper;
 use App\Shared\Contracts\Model\Mappable;

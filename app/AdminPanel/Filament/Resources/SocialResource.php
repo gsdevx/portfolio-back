@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AdminPanel\Filament\Resources;
 
-use App\Portfolio\Models\Social;
+use App\Shared\Models\Social;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;

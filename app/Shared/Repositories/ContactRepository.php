@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Portfolio\Repositories;
+namespace App\Shared\Repositories;
 
-use App\Portfolio\DTO\SocialDTO;
-use App\Portfolio\Models\Social;
+use App\Portfolio\DTO\ContactDTO;
+use App\Shared\Models\Contact;
 use Illuminate\Support\Collection;
 
-class SocialRepository
+class ContactRepository
 {
-    protected static string $modelClass = Social::class;
+    protected static string $modelClass = Contact::class;
 
     /**
-     * @return Collection<SocialDTO>
+     * @return Collection<ContactDTO>
      */
     public function getActiveOrdered(): Collection
     {

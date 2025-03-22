@@ -10,13 +10,9 @@ readonly class WorkCaseDTO
         public ?int $id,
         public string $title,
         public string $slug,
-        public ?string $previewUrl,
         public ?string $imageUrl,
         public ?string $videoUrl,
-        public ?string $summary,
         public ?string $description,
         public ?array $tags,
-        public ?int $viewsCount,
-        public ?int $todayViewsCount,
     ) {}
 }

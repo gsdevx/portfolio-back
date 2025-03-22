@@ -47,8 +47,7 @@ class WorkCaseResource extends Resource
                     ->label('Видео')
                     ->collection('videos')
                     ->acceptedFileTypes(['video/mp4', 'video/x-msvideo', 'video/quicktime', 'video/x-matroska'])
-                    ->maxSize(10240)
-                    ->required(),
+                    ->maxSize(10240),
                 Forms\Components\TextInput::make('title')
                     ->label('Название')
                     ->required()

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Portfolio\Repositories;
+namespace App\Analytics\Repositories;
 
 use App\Analytics\Models\PageVisit;
 use Carbon\Carbon;

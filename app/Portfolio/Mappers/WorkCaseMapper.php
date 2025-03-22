@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Portfolio\Mappers;
 
+use App\Portfolio\DTO\WorkCaseCardDTO;
 use App\Portfolio\DTO\WorkCaseDTO;
 use App\Portfolio\Models\WorkCase;
 use App\Shared\Contracts\Model\ModelMapper;
@@ -18,14 +19,22 @@ readonly class WorkCaseMapper implements ModelMapper
             id: $this->workCase->id,
             title: $this->workCase->title,
             slug: $this->workCase->slug,
-            previewUrl: $this->workCase->getFirstMediaUrl('previews', 'preview-thumb'),
             imageUrl: $this->workCase->getFirstMediaUrl('images'),
             videoUrl: $this->workCase->getFirstMediaUrl('videos'),
-            summary: $this->workCase->summary,
             description: $this->workCase->description,
             tags: $this->workCase->tags,
-            viewsCount: $this->workCase->getViewsCount(),
-            todayViewsCount: $this->workCase->getTodayViewsCount(),
+        );
+    }
+
+    public function toCardDTO(): WorkCaseCardDTO
+    {
+        return new WorkCaseCardDTO(
+            id: $this->workCase->id,
+            title: $this->workCase->title,
+            slug: $this->workCase->slug,
+            previewUrl: $this->workCase->getFirstMediaUrl('previews', 'preview-thumb'),
+            summary: $this->workCase->summary,
+            tags: $this->workCase->tags,
         );
     }
 }

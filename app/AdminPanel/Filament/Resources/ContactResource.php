@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AdminPanel\Filament\Resources;
 
-use App\Portfolio\Models\Contact;
+use App\Shared\Models\Contact;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;

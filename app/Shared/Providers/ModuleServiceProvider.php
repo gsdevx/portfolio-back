@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace App\Shared\Providers;
 
 use App\Portfolio\Mappers\Partial\FooterMapper;
-use App\Portfolio\Repositories\ContactRepository;
-use App\Portfolio\Repositories\SocialRepository;
 use App\Settings\Mappers\GeneralSettingsMapper;
+use App\Shared\Action\Contact\Get\GetActiveOrdered as GetActiveOrderedContacts;
+use App\Shared\Action\Social\Get\GetActiveOrdered as GetActiveOrderedSocials;
+use App\Shared\Models\Contact;
+use App\Shared\Models\Social;
+use App\Shared\Observers\ContactObserver;
+use App\Shared\Observers\SocialObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Collection;
@@ -21,6 +25,11 @@ class ModuleServiceProvider extends ServiceProvider
         'Crawler' => LaravelCrawlerDetect::class,
     ];
 
+    private array $modelObservers = [
+        Social::class => SocialObserver::class,
+        Contact::class => ContactObserver::class,
+    ];
+
     public function register(): void
     {
         $this->registerAliases();
@@ -30,6 +39,7 @@ class ModuleServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->bootViewSharing();
+        $this->bootModelObservers();
     }
 
     private function registerAliases(): void
@@ -50,13 +60,21 @@ class ModuleServiceProvider extends ServiceProvider
     {
         View::composer('partials.footer', function (\Illuminate\View\View $view) {
             $footerMapper = new FooterMapper(
-                socialDTOs: (new SocialRepository)->getActiveOrdered(),
-                contactDTOs: (new ContactRepository)->getActiveOrdered(),
+                socialDTOs: app(GetActiveOrderedSocials::class)(),
+                contactDTOs: app(GetActiveOrderedContacts::class)(),
             );
 
             $view->with('footer', $footerMapper->toDTO());
         });
 
         View::share('generalSettings', GeneralSettingsMapper::makeFromAppContainer()->toDTO());
+    }
+
+    private function bootModelObservers(): void
+    {
+        /** @var class-string $modelClass */
+        foreach ($this->modelObservers as $modelClass => $observerClass) {
+            $modelClass::observe($observerClass);
+        }
     }
 }

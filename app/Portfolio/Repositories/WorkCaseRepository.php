@@ -4,33 +4,43 @@ declare(strict_types=1);
 
 namespace App\Portfolio\Repositories;
 
+use App\Portfolio\DTO\WorkCaseCardDTO;
 use App\Portfolio\DTO\WorkCaseDTO;
 use App\Portfolio\Models\WorkCase;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class WorkCaseRepository
 {
     protected static string $modelClass = WorkCase::class;
 
-    public function getActiveOrderedWithPagination(int $perPage = 12): Paginator
+    public function getActiveOrderedWithPagination(): Paginator
     {
-        $paginator = self::$modelClass::activeOrdered()->paginate($perPage);
+        $perPage = config('pages.work-cases.per_page');
+        $paginator = self::$modelClass::query()
+            ->select(['id', 'is_active', 'slug', 'title', 'summary', 'tags', 'order'])
+            ->activeOrdered()
+            ->paginate($perPage);
         $paginator->getCollection()
-            ->transform(fn (WorkCase $workCase): WorkCaseDTO => $workCase->mapper()->toDTO());
+            ->transform(fn (WorkCase $workCase): WorkCaseCardDTO => $workCase->mapper()->toCardDTO());
 
         return $paginator;
     }
 
-    public function findActiveBySlug(string $slug): ?WorkCase
+    public function findActiveBySlug(string $slug): ?WorkCaseDTO
     {
-        return self::$modelClass::query()->firstWhere(['is_active' => true, 'slug' => $slug]);
+        return self::$modelClass::query()
+            ->select(['id', 'is_active', 'slug', 'title', 'description', 'tags'])
+            ->firstWhere(['is_active' => true, 'slug' => $slug])
+            ?->mapper()
+            ->toDTO();
     }
 
     /**
      * Костыль, но по другому никак, whereJsonContains не хочет работать с кириллицей
      *
-     * @return Collection<WorkCaseDTO>
+     * @return Collection<WorkCaseCardDTO>
      */
     public function findSimilar(WorkCaseDTO $workCase, int $limit = 6): Collection
     {
@@ -41,10 +51,18 @@ class WorkCaseRepository
             ->where('id', '!=', $workCase->id)
             ->each(static function (WorkCase $workCase) use ($data, $limit, $tags): void {
                 if ($data->count() <= $limit && $workCase->hasAnyTags($tags)) {
-                    $data->push($workCase->mapper()->toDTO());
+                    $data->push($workCase->mapper()->toCardDTO());
                 }
             });
 
         return $data;
+    }
+
+    public function getCount(bool $withTrashed = false): int
+    {
+        return self::$modelClass::query()
+            ->select('id')
+            ->when($withTrashed, static fn (Builder $query): Builder => $query->withTrashed())
+            ->count();
     }
 }

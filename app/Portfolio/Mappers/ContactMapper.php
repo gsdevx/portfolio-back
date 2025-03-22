@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Portfolio\Mappers;
 
 use App\Portfolio\DTO\ContactDTO;
-use App\Portfolio\Models\Contact;
 use App\Shared\Contracts\Model\ModelMapper;
+use App\Shared\Models\Contact;
 
 readonly class ContactMapper implements ModelMapper
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Analytics;
 
-use App\Portfolio\Repositories\PageVisitRepository;
+use App\Analytics\Repositories\PageVisitRepository;
 use Carbon\Carbon;
 
 readonly class PageVisitsAnalytics

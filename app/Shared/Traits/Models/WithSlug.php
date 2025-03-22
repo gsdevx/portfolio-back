@@ -25,7 +25,7 @@ trait WithSlug
         $i = 0;
         $slug = Str::slug($model->{static::$fromColumn});
 
-        while ($model::query()->where(self::$slugColumn, $slug)->exists()) {
+        while ($model::query()->where(self::$slugColumn, $slug)->withTrashed()->exists()) {
             $slug .= '-' . ++$i;
         }
 

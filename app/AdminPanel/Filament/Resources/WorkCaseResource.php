@@ -40,8 +40,13 @@ class WorkCaseResource extends Resource
                     ->maxSize(10240)
                     ->required(),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('image')
-                    ->label('Основное изображение')
+                    ->label('Изображение')
                     ->collection('images')
+                    ->maxSize(10240),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('video')
+                    ->label('Видео')
+                    ->collection('videos')
+                    ->acceptedFileTypes(['video/mp4', 'video/x-msvideo', 'video/quicktime', 'video/x-matroska'])
                     ->maxSize(10240)
                     ->required(),
                 Forms\Components\TextInput::make('title')

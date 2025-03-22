@@ -12,6 +12,7 @@ readonly class WorkCaseDTO
         public string $slug,
         public ?string $previewUrl,
         public ?string $imageUrl,
+        public ?string $videoUrl,
         public ?string $summary,
         public ?string $description,
         public ?array $tags,

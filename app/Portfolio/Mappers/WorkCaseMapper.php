@@ -20,6 +20,7 @@ readonly class WorkCaseMapper implements ModelMapper
             slug: $this->workCase->slug,
             previewUrl: $this->workCase->getFirstMediaUrl('previews', 'preview-thumb'),
             imageUrl: $this->workCase->getFirstMediaUrl('images'),
+            videoUrl: $this->workCase->getFirstMediaUrl('videos'),
             summary: $this->workCase->summary,
             description: $this->workCase->description,
             tags: $this->workCase->tags,

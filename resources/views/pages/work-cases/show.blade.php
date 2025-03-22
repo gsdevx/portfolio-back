@@ -20,6 +20,14 @@
                 </div>
             @endif
 
+                @if($workCase->videoUrl)
+                    <div>
+                        <video class="w-100 img-fluid" controls>
+                            <source src="{{ $workCase->videoUrl }}">
+                        </video>
+                    </div>
+                @endif
+
         </div>
         <div class="col-md-6">
             <h1 class="mt-sm-3 mt-md-0">{{ $workCase->title }}</h1>

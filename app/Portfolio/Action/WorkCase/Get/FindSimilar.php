@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Portfolio\Action\WorkCase;
+namespace App\Portfolio\Action\WorkCase\Get;
 
 use App\Portfolio\DTO\WorkCaseDTO;
 use App\Portfolio\Repositories\WorkCaseRepository;

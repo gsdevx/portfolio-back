@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Portfolio\Action\WorkCase;
+namespace App\Portfolio\Action\WorkCase\Get;
 
 use App\Portfolio\DTO\WorkCaseDTO;
 use App\Portfolio\Repositories\WorkCaseRepository;
@@ -22,6 +22,6 @@ readonly class FindBySlug
             throw new ModelNotFoundException;
         }
 
-        return $workCase->mapper()->toDTO();
+        return $workCase;
     }
 }

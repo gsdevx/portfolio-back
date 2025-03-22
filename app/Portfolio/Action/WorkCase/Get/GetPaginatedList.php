@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Portfolio\Action\WorkCase;
+namespace App\Portfolio\Action\WorkCase\Get;
 
 use App\Portfolio\Repositories\WorkCaseRepository;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -13,8 +13,8 @@ readonly class GetPaginatedList
         private WorkCaseRepository $workCaseRepository
     ) {}
 
-    public function __invoke(int $perPage = 12): Paginator
+    public function __invoke(): Paginator
     {
-        return $this->workCaseRepository->getActiveOrderedWithPagination($perPage);
+        return $this->workCaseRepository->getActiveOrderedWithPagination();
     }
 }

@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace App\Portfolio\DTO;
 
-readonly class WorkCaseDTO
+class WorkCaseCardDTO
 {
     public function __construct(
         public ?int $id,
         public string $title,
         public string $slug,
-        public ?string $imageUrl,
-        public ?string $videoUrl,
-        public ?string $description,
+        public ?string $previewUrl,
+        public ?string $summary,
         public ?array $tags,
+        public ?int $viewsCount,
+        public ?int $todayViewsCount,
     ) {}
 }

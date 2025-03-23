@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Portfolio\Repositories;
 
+use App\Portfolio\Contracts\Repository\ToolRepository;
 use App\Portfolio\DTO\ToolDTO;
 use App\Portfolio\Models\Tool;
 use Illuminate\Support\Collection;
 
-class ToolRepository
+class ToolEloquentRepository implements ToolRepository
 {
     protected static string $modelClass = Tool::class;
 

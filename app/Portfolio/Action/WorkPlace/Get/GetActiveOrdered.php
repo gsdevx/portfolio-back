@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Portfolio\Action\WorkPlace\Get;
 
 use App\Portfolio\Action\WorkPlace\Cache\GetOrRememberItems;
-use App\Portfolio\Repositories\WorkPlaceRepository;
+use App\Portfolio\Contracts\Repository\WorkPlaceRepository;
 use Illuminate\Support\Collection;
 
 readonly class GetActiveOrdered

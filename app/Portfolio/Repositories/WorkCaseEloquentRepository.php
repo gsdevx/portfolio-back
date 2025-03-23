@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Portfolio\Repositories;
 
+use App\Portfolio\Contracts\Repository\WorkCaseRepository;
 use App\Portfolio\DTO\WorkCaseCardDTO;
 use App\Portfolio\DTO\WorkCaseDTO;
 use App\Portfolio\Models\WorkCase;
@@ -11,7 +12,7 @@ use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
-class WorkCaseRepository
+class WorkCaseEloquentRepository implements WorkCaseRepository
 {
     protected static string $modelClass = WorkCase::class;
 

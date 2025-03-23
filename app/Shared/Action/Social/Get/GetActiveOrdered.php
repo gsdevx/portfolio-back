@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Shared\Action\Social\Get;
 
 use App\Shared\Action\Social\Cache\GetOrRememberItems;
-use App\Shared\Repositories\SocialRepository;
+use App\Shared\Contracts\Repository\SocialRepository;
 use Illuminate\Support\Collection;
 
 readonly class GetActiveOrdered

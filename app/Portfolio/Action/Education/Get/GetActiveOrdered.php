@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Portfolio\Action\Education\Get;
 
 use App\Portfolio\Action\Education\Cache\GetOrRememberItems;
-use App\Portfolio\Repositories\EducationRepository;
+use App\Portfolio\Contracts\Repository\EducationRepository;
 use Illuminate\Support\Collection;
 
 readonly class GetActiveOrdered

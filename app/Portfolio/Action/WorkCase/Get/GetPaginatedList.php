@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Portfolio\Action\WorkCase\Get;
 
 use App\Portfolio\Action\WorkCase\Cache\GetOrRememberPaginated;
-use App\Portfolio\Repositories\WorkCaseRepository;
+use App\Portfolio\Contracts\Repository\WorkCaseRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 
 readonly class GetPaginatedList

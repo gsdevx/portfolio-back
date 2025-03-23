@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Portfolio\Repositories;
 
+use App\Portfolio\Contracts\Repository\EducationRepository;
 use App\Portfolio\DTO\EducationDTO;
 use App\Portfolio\Models\Education;
 use Illuminate\Support\Collection;
 
-class EducationRepository
+class EducationEloquentRepository implements EducationRepository
 {
     protected static string $modelClass = Education::class;
 

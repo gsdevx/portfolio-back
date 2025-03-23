@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Portfolio\Action\WorkCase\Cache;
 
-use App\Portfolio\Repositories\WorkCaseRepository;
+use App\Portfolio\Contracts\Repository\WorkCaseRepository;
 
 class ForgetPaginated
 {
@@ -13,7 +13,7 @@ class ForgetPaginated
      */
     public function __invoke(): void
     {
-        $count = (new WorkCaseRepository)->getCount();
+        $count = app(WorkCaseRepository::class)->getCount();
         $perPage = config('pages.work-cases.per_page');
         $totalPages = ceil($count / $perPage);
 

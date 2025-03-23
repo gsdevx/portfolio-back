@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace App\Shared\Repositories;
 
-use App\Portfolio\DTO\SocialDTO;
-use App\Shared\Models\Social;
+use App\Portfolio\DTO\ContactDTO;
+use App\Shared\Contracts\Repository\ContactRepository;
+use App\Shared\Models\Contact;
 use Illuminate\Support\Collection;
 
-class SocialRepository
+class ContactEloquentRepository implements ContactRepository
 {
-    protected static string $modelClass = Social::class;
+    protected static string $modelClass = Contact::class;
 
     /**
-     * @return Collection<SocialDTO>
+     * @return Collection<ContactDTO>
      */
     public function getActiveOrdered(): Collection
     {

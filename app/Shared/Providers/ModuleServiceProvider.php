@@ -8,10 +8,14 @@ use App\Portfolio\Mappers\Partial\FooterMapper;
 use App\Settings\Mappers\GeneralSettingsMapper;
 use App\Shared\Action\Contact\Get\GetActiveOrdered as GetActiveOrderedContacts;
 use App\Shared\Action\Social\Get\GetActiveOrdered as GetActiveOrderedSocials;
+use App\Shared\Contracts\Repository\ContactRepository;
+use App\Shared\Contracts\Repository\SocialRepository;
 use App\Shared\Models\Contact;
 use App\Shared\Models\Social;
 use App\Shared\Observers\ContactObserver;
 use App\Shared\Observers\SocialObserver;
+use App\Shared\Repositories\ContactEloquentRepository;
+use App\Shared\Repositories\SocialEloquentRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Collection;
@@ -21,6 +25,11 @@ use Jaybizzle\LaravelCrawlerDetect\Facades\LaravelCrawlerDetect;
 
 class ModuleServiceProvider extends ServiceProvider
 {
+    public array $bindings = [
+        ContactRepository::class => ContactEloquentRepository::class,
+        SocialRepository::class => SocialEloquentRepository::class,
+    ];
+
     private array $aliases = [
         'Crawler' => LaravelCrawlerDetect::class,
     ];

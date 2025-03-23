@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Shared\Action\Contact\Get;
 
 use App\Shared\Action\Contact\Cache\GetOrRememberItems;
-use App\Shared\Repositories\ContactRepository;
+use App\Shared\Contracts\Repository\ContactRepository;
 use Illuminate\Support\Collection;
 
 readonly class GetActiveOrdered

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Analytics;
 
-use App\Analytics\Models\PageVisit;
 use App\Portfolio\Models\WorkCase;
+use App\VisitLog\Models\VisitLog;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -22,7 +22,7 @@ class WorkCasesPageVisits
         ?Carbon $fromDate = null,
         ?Carbon $toDate = null
     ): int {
-        return PageVisit::query()
+        return VisitLog::query()
             ->when(
                 $concrete,
                 static fn (Builder $query): Builder => $query->where('path', self::getShowPath($concrete)),

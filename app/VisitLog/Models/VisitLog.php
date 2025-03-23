@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Analytics\Models;
+namespace App\VisitLog\Models;
 
 use Carbon\Carbon;
-use Database\Factories\PageVisitFactory;
+use Database\Factories\VisitLogFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,9 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-class PageVisit extends Model
+class VisitLog extends Model
 {
-    /** @use HasFactory<PageVisitFactory> */
+    /** @use HasFactory<VisitLogFactory> */
     use HasFactory;
 
     protected $fillable = [

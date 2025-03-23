@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Analytics\DTO;
+namespace App\VisitLog\DTO;
 
-readonly class PageVisitDTO
+readonly class VisitLogDTO
 {
     public function __construct(
         public string $ip,

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Analytics;
 
-use App\Analytics\Repositories\PageVisitRepository;
+use App\VisitLog\Contracts\Repository\VisitLogRepository;
 use Carbon\Carbon;
 
 readonly class PageVisitsAnalytics
 {
-    private PageVisitRepository $repository;
+    private VisitLogRepository $repository;
 
     private Carbon $currentDate;
 
     public function __construct()
     {
-        $this->repository = new PageVisitRepository;
+        $this->repository = app(VisitLogRepository::class);
         $this->currentDate = now();
     }
 

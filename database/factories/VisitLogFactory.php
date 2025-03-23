@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Analytics\Models\PageVisit;
+use App\VisitLog\Models\VisitLog;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<PageVisit>
+ * @extends Factory<VisitLog>
  */
-class PageVisitFactory extends Factory
+class VisitLogFactory extends Factory
 {
-    protected $model = PageVisit::class;
+    protected $model = VisitLog::class;
 
     public function definition(): array
     {
         return [
-            'path' => '/cases',
+            'path' => '/',
             'ip' => $this->faker->ipv4,
             'user_agent' => $this->faker->userAgent,
         ];

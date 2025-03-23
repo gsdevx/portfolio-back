@@ -2,15 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\Analytics\Repositories;
+namespace App\VisitLog\Repositories;
 
-use App\Analytics\Models\PageVisit;
+use App\VisitLog\Contracts\Repository\VisitLogRepository;
+use App\VisitLog\DTO\VisitLogDTO;
+use App\VisitLog\Models\VisitLog;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
-class PageVisitRepository
+class VisitLogEloquentRepository implements VisitLogRepository
 {
-    protected static string $modelClass = PageVisit::class;
+    protected static string $modelClass = VisitLog::class;
+
+    public function create(VisitLogDTO $visitLog): void
+    {
+        self::$modelClass::query()
+            ->create([
+                'ip' => $visitLog->ip,
+                'path' => $visitLog->path,
+                'user_agent' => $visitLog->userAgent,
+            ]);
+    }
 
     public function getUniqueIPAddressesTodayCount(?string $path = null): int
     {

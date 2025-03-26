@@ -9,6 +9,7 @@ use App\Portfolio\Contracts\Repository\EducationRepository;
 use App\Portfolio\Contracts\Repository\ToolRepository;
 use App\Portfolio\Contracts\Repository\WorkCaseRepository;
 use App\Portfolio\Contracts\Repository\WorkPlaceRepository;
+use App\Portfolio\Listeners\MediaLogger;
 use App\Portfolio\Models\Education;
 use App\Portfolio\Models\Tool;
 use App\Portfolio\Models\WorkCase;
@@ -21,7 +22,9 @@ use App\Portfolio\Repositories\EducationEloquentRepository;
 use App\Portfolio\Repositories\ToolEloquentRepository;
 use App\Portfolio\Repositories\WorkCaseEloquentRepository;
 use App\Portfolio\Repositories\WorkPlaceEloquentRepository;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use Spatie\MediaLibrary\MediaCollections\Events\MediaHasBeenAddedEvent;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -43,6 +46,12 @@ class ModuleServiceProvider extends ServiceProvider
         Tool::class => ToolObserver::class,
     ];
 
+    protected array $eventListeners = [
+        MediaHasBeenAddedEvent::class => [
+            MediaLogger::class,
+        ],
+    ];
+
     public function register(): void
     {
         $this->registerConsoleCommands();
@@ -51,6 +60,7 @@ class ModuleServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->bootModelObservers();
+        $this->bootEventListeners();
     }
 
     private function registerConsoleCommands(): void
@@ -63,6 +73,17 @@ class ModuleServiceProvider extends ServiceProvider
         /** @var class-string $model */
         foreach ($this->modelObservers as $model => $observerClass) {
             $model::observe($observerClass);
+        }
+    }
+
+    private function bootEventListeners(): void
+    {
+        /** @var class-string $event */
+        foreach ($this->eventListeners as $event => $listeners) {
+            /** @var class-string $listener */
+            foreach ($listeners as $listener) {
+                Event::listen($event, $listener);
+            }
         }
     }
 }
